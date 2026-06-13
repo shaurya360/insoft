@@ -89,6 +89,7 @@ export function ProductCategoriesSection() {
       <div className="container-custom">
         <div className="relative overflow-hidden rounded-3xl bg-slate-100/95 border border-slate-200/70 mb-12 shadow-xl dark:bg-slate-900/95 dark:border-white/10">
           <div className="absolute inset-0 opacity-30">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&h=700&fit=crop"
               alt="IT Products Showcase"
@@ -120,6 +121,7 @@ export function ProductCategoriesSection() {
               className="rounded-3xl p-8 border border-slate-200 bg-white shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-gray-700 dark:bg-slate-900 flex flex-col"
             >
               <div className="relative mb-6 h-40 overflow-hidden rounded-3xl">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={category.image}
                   alt={category.title}

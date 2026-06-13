@@ -108,7 +108,7 @@ export function WhyChooseUsSection() {
             </h2>
 
             <p className="text-gray-600 dark:text-gray-400 text-lg mb-8 leading-relaxed">
-              With over a decade of experience, we've become the trusted choice
+              With over a decade of experience, we&apos;ve become the trusted choice
               for thousands of customers. Our commitment to quality, expertise,
               and customer satisfaction sets us apart.
             </p>

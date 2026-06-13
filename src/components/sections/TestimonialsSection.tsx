@@ -138,7 +138,7 @@ export function TestimonialsSection() {
 
                   {/* Quote */}
                   <blockquote className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 italic">
-                    "{testimonials[current].content}"
+                    &ldquo;{testimonials[current].content}&rdquo;
                   </blockquote>
 
                   {/* Author */}

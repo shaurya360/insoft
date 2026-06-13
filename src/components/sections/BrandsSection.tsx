@@ -83,6 +83,7 @@ export function BrandsSection() {
               className="relative rounded-xl p-4 flex items-center justify-center h-28 border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-primary-500 hover:shadow-xl dark:border-gray-700 dark:bg-slate-900 overflow-hidden"
             >
               <motion.div className="relative w-full h-full" variants={fadeUp as any}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={brand.logo} alt={brand.name} className="object-contain p-2 w-full h-full" />
               </motion.div>
 

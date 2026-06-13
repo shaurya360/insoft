@@ -87,7 +87,7 @@ export function ContactSection() {
         >
           <h2 className="section-title">Get In Touch</h2>
           <p className="section-subtitle">
-            Have questions? We'd love to hear from you. Send us a message!
+            Have questions? We&apos;d love to hear from you. Send us a message!
           </p>
         </motion.div>
 
