@@ -1,15 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Wrench,
   Facebook,
-  Twitter,
   Instagram,
-  Linkedin,
   Mail,
   Phone,
   MapPin,
