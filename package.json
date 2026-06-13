@@ -1,7 +1,7 @@
 {
-  "name": "technova-solutions",
+  "name": "insoft-technology",
   "version": "1.0.0",
-  "description": "TechNova Solutions - Your One-Stop Destination for Computers, Accessories & Expert Repairs",
+  "description": "Insoft Technology - Your One-Stop Destination for Computers, Accessories & Expert Repairs",
   "private": true,
   "scripts": {
     "dev": "next dev",
