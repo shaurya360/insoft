@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { fadeUp, stagger, hoverPop } from "../../lib/animations";
+import { fadeUp } from "../../lib/animations";
 import { Monitor, Laptop, Server, Printer, Wifi, ShieldCheck } from "lucide-react";
 
 interface ProductCategory {

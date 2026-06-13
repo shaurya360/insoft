@@ -7,7 +7,6 @@ import {
   Database,
   Shield,
   Wrench,
-  HardDrive,
   Package,
   MessageSquare,
 } from "lucide-react";
