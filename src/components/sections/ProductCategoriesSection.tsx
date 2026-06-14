@@ -22,7 +22,7 @@ export function ProductCategoriesSection() {
       items: ["Business Workstations", "All-in-One PCs", "Mini PCs & Thin Clients", "Custom-built Systems"],
       icon: <Monitor className="w-6 h-6" />,
       brands: ["Dell", "HP", "Lenovo", "Acer"],
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop",
+      image: "/pc.jpg",
     },
     {
       title: "Laptops & Notebooks",
@@ -38,7 +38,7 @@ export function ProductCategoriesSection() {
       items: ["Tower & Rack Servers", "NAS & SAN Storage", "UPS & Power Systems", "Blade Servers"],
       icon: <Server className="w-6 h-6" />,
       brands: ["Dell PowerEdge", "HP ProLiant", "Lenovo ThinkSystem", "Synology NAS"],
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      image: "/ram.jpg",
     },
     {
       title: "Printers, Displays & AV",
@@ -46,7 +46,7 @@ export function ProductCategoriesSection() {
       items: ["Laser & Inkjet Printers", "Multifunction Printers", "Scanners & Copiers", "Smart Boards & Projectors"],
       icon: <Printer className="w-6 h-6" />,
       brands: ["Canon", "HP", "Epson", "Brother", "Hisense"],
-      image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+      image: "/printer.png",
     },
     {
       title: "Networking Equipment",
@@ -54,7 +54,7 @@ export function ProductCategoriesSection() {
       items: ["Routers & Switches", "Wireless Access Points", "Firewalls & UTM", "PoE Switches"],
       icon: <Wifi className="w-6 h-6" />,
       brands: ["Cisco", "TP-Link", "Ubiquiti", "Netgear"],
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=800&fit=crop",
+      image: "/network.jpg",
     },
     {
       title: "Security & Surveillance",
@@ -62,7 +62,7 @@ export function ProductCategoriesSection() {
       items: ["IP CCTV Cameras", "DVR & NVR Systems", "Access Control", "Biometric Devices"],
       icon: <ShieldCheck className="w-6 h-6" />,
       brands: ["Hikvision", "Dahua", "Bosch", "Honeywell"],
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      image: "/camera.jpg",
     },
     {
       title: "Accessories & Cables",
@@ -80,7 +80,7 @@ export function ProductCategoriesSection() {
       ],
       icon: <Monitor className="w-6 h-6" />,
       brands: ["Logitech", "Kingston", "Crucial", "Gigabyte", "Microtec", "MSI", "Seagate", "Western Digital", "Sony"],
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      image: "/assecrioes.jpg",
     },
   ];
 

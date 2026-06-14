@@ -135,7 +135,7 @@ function Slider() {
     {
       title: "Desktop Computers",
       subtitle: "Business workstations, mini PCs, and custom systems",
-      img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      img: "/pc.jpg",
     },
     {
       title: "Laptops & Notebooks",
@@ -145,27 +145,27 @@ function Slider() {
     {
       title: "Servers & Storage",
       subtitle: "Reliable server platforms and storage",
-      img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      img: "/ram.jpg",
     },
     {
       title: "Printers & Peripherals",
       subtitle: "Printing, scanning and productivity peripherals",
-      img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+      img: "/printer.png",
     },
     {
       title: "Networking Equipment",
       subtitle: "Routers, switches and wireless access points",
-      img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+      img: "/network.jpg",
     },
     {
       title: "Security & Surveillance",
       subtitle: "CCTV, NVRs and access control",
-      img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+      img: "/camera.jpg",
     },
     {
       title: "Accessories & Cables",
       subtitle: "Mice, headsets, keyboards, webcams, SSDs and cables",
-      img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+      img: "/assecrioes.jpg",
     },
   ];
 

@@ -23,7 +23,7 @@ const brands: Brand[] = [
   { id: 12, name: "Microsoft", logo: "/microsoft.png" },
   { id: 13, name: "Intel", logo: "/intel.png" },
   { id: 14, name: "NVIDIA", logo: "/nvidia.png" },
-  { id: 15, name: "Hisense", logo: "https://upload.wikimedia.org/wikipedia/commons/1/17/Hisense-Logo.svg" },
+  { id: 15, name: "Hisense", logo: "/hisense.jpg" },
   { id: 16, name: "Kingston", logo: "/kingston.jpg" },
   { id: 17, name: "Crucial", logo: "/crucial.png" },
   { id: 18, name: "Gigabyte", logo: "/gigabyte.png" },
