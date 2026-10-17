@@ -35,7 +35,7 @@ export const COMPANY = {
 export const WHATSAPP_URL = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent("Hello Insoft Technology, I'd like a quotation for ")}`;
 
 export const NAV = [
-  { href: "#about", label: "About" },
+  { href: "#solutions", label: "Solutions" },
   { href: "#products", label: "Products" },
   { href: "#bulk-orders", label: "Bulk orders" },
   { href: "#services", label: "Repairs" },
@@ -74,21 +74,25 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     title: "Laptops, desktops & computing",
     summary: "Business laptops and desktops for every role, plus custom builds and tablets.",
     items: [
-      { name: "Laptops & thin-and-light ultrabooks", detail: "Business-grade Intel Core i5/i7 and Apple Silicon models, 14\"–16\" displays." },
-      { name: "Commercial desktops", detail: "Small-form-factor and tower PCs for offices, reception and admin teams." },
+      { name: "Business laptops & ultrabooks", detail: "Intel Core i5/i7 and Apple Silicon models with 14\"–16\" displays, for staff, managers and travelling teams." },
+      { name: "Commercial desktops", detail: "Small-form-factor and tower PCs for offices, reception, accounts and admin teams." },
+      { name: "All-in-one PCs", detail: "Space-saving desktops for front desks, counters and shared workstations." },
       { name: "Custom PC builds", detail: "Gaming rigs and video-editing or rendering machines built to your specification." },
       { name: "Tablets", detail: "iPadOS and Android tablets for field sales, digital forms and point of sale." },
+      { name: "Monitors & accessories", detail: "Monitors, keyboards, mice, webcams, headsets, docking stations and bags." },
     ],
-    brands: "Dell, HP, Lenovo, Apple, Acer, Samsung",
+    brands: "Dell, HP, Lenovo, Apple, Acer, Asus, Samsung, Logitech",
   },
   {
     id: "servers",
     title: "Servers & workstations",
-    summary: "Infrastructure for data centres, server rooms and demanding design or engineering work.",
+    summary: "Infrastructure for server rooms and demanding design, engineering and analytics work.",
     items: [
-      { name: "Rack & tower servers", detail: "Servers for file sharing, ERP, databases, virtualisation and backup, sized to your workload." },
+      { name: "Rack servers", detail: "1U and 2U servers for ERP, databases, virtualisation and file sharing, sized to your workload." },
+      { name: "Tower servers", detail: "Quiet, compact servers for small offices and branches without a dedicated server room." },
       { name: "Workstations", detail: "Tower and mobile workstations with professional graphics for CAD, design, video and analytics." },
       { name: "Server storage & NAS", detail: "Network storage and backup appliances for shared files and data protection." },
+      { name: "Server upgrades", detail: "Additional memory, drives, RAID controllers and power supplies for existing servers." },
     ],
     brands: "Dell, HP, Lenovo",
   },
@@ -100,17 +104,21 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
       { name: "Refurbished laptops", detail: "Tested and graded pre-owned business laptops with warranty." },
       { name: "Refurbished desktops", detail: "Tested and graded office desktops and small-form-factor PCs with warranty." },
       { name: "Bulk lots", detail: "Matched batches for training labs, call centres, schools and new offices." },
+      { name: "Upgrades on request", detail: "Extra RAM or an SSD fitted before delivery to extend the life of each system." },
     ],
     brands: "Dell, HP, Lenovo, Acer",
   },
   {
     id: "networking",
-    title: "Networking & connectivity",
-    summary: "Office and campus networks, from cabling to managed switching and Wi-Fi.",
+    title: "Switches, access points & routers",
+    summary: "Wired and wireless networks for offices, warehouses, campuses and branches.",
     items: [
-      { name: "Wi-Fi 6/6E access points", detail: "Indoor and outdoor units, cloud or on-premises managed." },
-      { name: "Managed L2/L3 PoE+ switches", detail: "24/48-port Gigabit and 10G, VLANs, L3 routing and stacking." },
-      { name: "Structured cabling", detail: "CAT6/CAT6A copper and fibre, patch panels and cable management." },
+      { name: "Managed switches", detail: "24/48-port Gigabit and 10G L2/L3 switches with VLANs, routing and stacking." },
+      { name: "PoE switches", detail: "Power over Ethernet for access points, IP cameras and IP phones from a single cable." },
+      { name: "Unmanaged switches", detail: "Simple plug-and-play 5- to 24-port switches for small offices and desks." },
+      { name: "Wi-Fi access points", detail: "Wi-Fi 6/6E indoor and outdoor access points, cloud or controller managed, for full-floor coverage." },
+      { name: "Routers", detail: "Business routers with load balancing and failover across multiple internet connections." },
+      { name: "Network setup", detail: "Site survey, configuration of VLANs and Wi-Fi, and installation by our engineers." },
     ],
     brands: "Cisco, D-Link, TP-Link",
   },
@@ -119,20 +127,35 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     title: "Firewalls & network security",
     summary: "Protect office networks and give staff secure access from outside.",
     items: [
-      { name: "Firewalls & UTM appliances", detail: "Next-generation firewalls with web filtering, intrusion prevention and gateway antivirus." },
+      { name: "Next-generation firewalls", detail: "Firewalls for small offices through to large networks, with web filtering, intrusion prevention and gateway antivirus." },
       { name: "VPN & remote access", detail: "Site-to-site links between branches and secure remote access for employees." },
+      { name: "Licences & renewals", detail: "Security subscription and support renewals for new and existing firewalls." },
+      { name: "Setup & configuration", detail: "Policies, VPNs, user rules and web filtering configured by our engineers." },
+    ],
+    brands: "Sophos, Fortinet",
+  },
+  {
+    id: "racks-cabling",
+    title: "Racks & structured cabling",
+    summary: "Neat, labelled cabling and racks for network and server equipment.",
+    items: [
+      { name: "Wall-mount network racks", detail: "Compact racks for switches, patch panels and NVRs in offices and shops." },
+      { name: "Floor-standing server racks", detail: "Full-height racks for servers, storage and core network equipment." },
+      { name: "Rack accessories", detail: "Shelves, cooling fans, PDUs, cable managers, blanking panels and mounting hardware." },
+      { name: "Copper & fibre cabling", detail: "CAT6/CAT6A copper and fibre runs, patch panels, faceplates and patch cords." },
     ],
   },
   {
-    id: "racks-power",
-    title: "Racks, UPS & power backup",
-    summary: "Housing and backup power for servers, network equipment and workstations.",
+    id: "power",
+    title: "UPS & power backup",
+    summary: "Backup power that keeps servers, networks and workstations running through outages.",
     items: [
-      { name: "Server & network racks", detail: "Wall-mount and floor-standing racks with shelves, cooling fans, PDUs and cable managers." },
-      { name: "Online UPS", detail: "Backup power for servers, network racks and critical equipment." },
-      { name: "Offline / line-interactive UPS", detail: "Compact UPS units for desktops, POS counters and home offices." },
+      { name: "Online UPS", detail: "Continuous, clean power for servers, network racks and critical equipment." },
+      { name: "Line-interactive & offline UPS", detail: "Compact UPS units for desktops, POS counters and home offices." },
+      { name: "Rack-mount UPS", detail: "UPS units that fit inside server and network racks." },
       { name: "UPS batteries", detail: "Replacement batteries and external battery banks for longer backup time." },
     ],
+    brands: "APC, Microtek",
   },
   {
     id: "storage",
@@ -140,6 +163,7 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     summary: "Drives and media for upgrades, backups and surveillance recording.",
     items: [
       { name: "SSDs and hard disks", detail: "NVMe and SATA solid-state drives and HDDs for laptops, desktops and workstations." },
+      { name: "External drives", detail: "Portable hard disks and SSDs for backups and moving large files." },
       { name: "Memory cards", detail: "High-endurance SD and microSD cards for CCTV, POS and embedded devices." },
       { name: "Pen drives", detail: "USB 3.0/3.2 flash drives in multiple capacities." },
     ],
@@ -148,10 +172,11 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
   {
     id: "surveillance",
     title: "CCTV & surveillance",
-    summary: "Camera systems for offices, warehouses and retail floors.",
+    summary: "Camera systems for offices, warehouses, factories and retail floors.",
     items: [
       { name: "IP CCTV cameras", detail: "Dome, bullet and PTZ cameras with motion tracking and colour night vision." },
       { name: "NVR / DVR recording", detail: "Multi-channel recording with central storage and remote viewing on mobile." },
+      { name: "Installation", detail: "Camera placement, cabling, PoE power and mobile viewing set up by our technicians." },
     ],
     brands: "CP Plus",
   },
@@ -161,6 +186,7 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     summary: "Office printing and point-of-sale hardware.",
     items: [
       { name: "Network multifunction printers", detail: "Duplex print and scan hubs for medium and large offices." },
+      { name: "Laser & ink-tank printers", detail: "Low running-cost printers for desks, branches and home offices." },
       { name: "Barcode scanners", detail: "Wired and wireless 1D/2D handheld scanners for inventory and checkout." },
       { name: "POS thermal receipt printers", detail: "Compact, high-speed printers for billing counters." },
     ],
@@ -172,8 +198,36 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     summary: "Collaboration displays for meeting rooms and classrooms.",
     items: [
       { name: "4K interactive panels & smart boards", detail: "Anti-glare multi-touch panels with annotation and wireless casting." },
+      { name: "Meeting-room setups", detail: "Displays, webcams and speakerphones for video conferencing rooms." },
     ],
-    brands: "Samsung",
+    brands: "Samsung, Logitech",
+  },
+];
+
+export const SOLUTIONS = [
+  {
+    title: "New office IT setup",
+    text: "Moving into a new office or opening a branch? We plan and supply everything in one go — laptops and desktops, network racks and cabling, switches and Wi-Fi, a firewall, UPS backup, CCTV and printers — then install and test it so your team can start work on day one.",
+  },
+  {
+    title: "Networking & Wi-Fi",
+    text: "Managed and PoE switches, Wi-Fi 6 access points and business routers, designed for your floor plan and number of users. We configure VLANs, guest Wi-Fi and internet failover, and leave the rack labelled and tidy.",
+  },
+  {
+    title: "Firewall & network security",
+    text: "Sophos and Fortinet firewalls with web filtering, intrusion prevention and VPN access for remote staff and branches. We size the firewall to your internet speed and users, set up the policies and handle licence renewals.",
+  },
+  {
+    title: "Server room & power",
+    text: "Rack and tower servers, network storage, server racks and online UPS from APC and Microtek — the core infrastructure your ERP, file sharing and backups depend on, installed and powered correctly.",
+  },
+  {
+    title: "Surveillance",
+    text: "CP Plus IP cameras and NVRs for offices, warehouses, factories and shops, with PoE cabling and mobile viewing, so you can see every site from your phone.",
+  },
+  {
+    title: "Computer roll-outs & refresh",
+    text: "New or refurbished laptops and desktops in bulk, configured with your operating system and software before delivery. A practical way to equip a training lab or call centre, or to replace ageing machines across the company.",
   },
 ];
 
@@ -238,7 +292,7 @@ export const FAQS = [
   },
   {
     q: "Which brands do you deal in?",
-    a: "Dell, HP, Lenovo, Apple, Acer, Asus and Samsung for computing; Cisco, D-Link and TP-Link for networking; Western Digital and Samsung for storage; CP Plus for surveillance; HP, Canon and Epson for printing; and Logitech accessories.",
+    a: "Dell, HP, Lenovo, Apple, Acer, Asus and Samsung for computing and servers; Cisco, D-Link and TP-Link for switches, access points and routers; Sophos and Fortinet for firewalls; APC and Microtek for UPS; Western Digital and Samsung for storage; CP Plus for surveillance; HP, Canon and Epson for printing; and Logitech accessories.",
   },
   {
     q: "Do you repair laptops and computers?",
@@ -255,7 +309,35 @@ export const FAQS = [
   {
     q: "Do you deliver outside Delhi?",
     a: "Yes. We deliver across India. Send us your requirement and delivery location, and the delivery time will be confirmed in your quotation.",
+  },  {
+    q: "Which firewalls do you supply and install?",
+    a: "We supply and configure Sophos and Fortinet firewalls, from small-office models to appliances for large networks. Our engineers set up the policies, web filtering and VPN access, and we handle licence renewals.",
   },
+  {
+    q: "Which UPS brands do you sell?",
+    a: "We supply APC and Microtek UPS systems — online UPS for servers and network racks, and line-interactive or offline UPS for desktops and counters — along with replacement batteries. Tell us what needs backup and for how long, and we will suggest the right capacity.",
+  },
+  {
+    q: "Do you supply and install switches, access points and racks?",
+    a: "Yes. We supply managed, PoE and unmanaged switches, Wi-Fi access points, routers, wall-mount and floor-standing racks, and CAT6/fibre cabling, and our engineers install and configure the complete network.",
+  },
+  {
+    q: "Do you supply servers and workstations?",
+    a: "Yes. We supply Dell, HP and Lenovo rack and tower servers, workstations and network storage, configured for your applications, users and backup needs.",
+  },
+  {
+    q: "Do products come with warranty?",
+    a: "Yes. New products carry the manufacturer's warranty, refurbished systems come with warranty, and our own technicians support you if anything goes wrong.",
+  },
+  {
+    q: "Do you sell to individuals as well as companies?",
+    a: "Yes. Most of our work is with businesses, but individual buyers are welcome to call, WhatsApp or visit our Nehru Place office.",
+  },
+  {
+    q: "How do I get a quotation?",
+    a: "Send your requirement through the enquiry form on this page, on WhatsApp or by email — product types, quantities and delivery location. We reply with a written quotation including GST, delivery time and payment terms.",
+  },
+
 ];
 
 // Topics offered in the enquiry form (also validated by the /api/enquiry route).
