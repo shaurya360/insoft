@@ -1,21 +1,27 @@
-import { HeroSection } from "@/components/sections/HeroSection";
-import { ServicesSection } from "@/components/sections/ServicesSection";
-import { ProductCategoriesSection } from "@/components/sections/ProductCategoriesSection";
-import { WhyChooseUsSection } from "@/components/sections/WhyChooseUsSection";
-import { RepairServicesSection } from "@/components/sections/RepairServicesSection";
-import { BrandsSection } from "@/components/sections/BrandsSection";
-import { ContactSection } from "@/components/sections/ContactSection";
+import { Hero } from "@/components/sections/Hero";
+import { Brands } from "@/components/sections/Brands";
+import { About } from "@/components/sections/About";
+import { Products } from "@/components/sections/Products";
+import { Services } from "@/components/sections/Services";
+import { WhyUs } from "@/components/sections/WhyUs";
+import { Clients } from "@/components/sections/Clients";
+import { Process } from "@/components/sections/Process";
+import { Faq } from "@/components/sections/Faq";
+import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
   return (
     <>
-      <HeroSection />
-      <ServicesSection />
-      <ProductCategoriesSection />
-      <WhyChooseUsSection />
-      <RepairServicesSection />
-      <BrandsSection />
-      <ContactSection />
+      <Hero />
+      <Brands />
+      <About />
+      <Products />
+      <Services />
+      <WhyUs />
+      <Clients />
+      <Process />
+      <Faq />
+      <Contact />
     </>
   );
 }
