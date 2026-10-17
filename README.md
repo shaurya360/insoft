@@ -1,6 +1,6 @@
 # insofttechnology.in
 
-Single-page website for **Insoft Technology**, an IT hardware supplier and repair/AMC provider at 203, Harsh Bhawan, 64–65 Nehru Place, New Delhi.
+Single-page website for **Insoft Technology**, an complete IT solutions provider (hardware supply and repairs) at 203, Harsh Bhawan, 64–65 Nehru Place, New Delhi.
 
 The site uses Next.js 15 (App Router), React 19 and Tailwind CSS. It has a light theme only and no animation libraries, and every section is rendered as static HTML.
 
@@ -52,10 +52,23 @@ SUPABASE_ANON_KEY=<anon / publishable key>
 
 The database migration lives in the admin app repository: `supabase/migrations/004_enquiries.sql`.
 
+### Email alerts (optional)
+
+Every saved enquiry can also be emailed, using [Resend](https://resend.com). Set these variables:
+
+```
+RESEND_API_KEY=re_...
+ENQUIRY_ALERT_EMAIL=shauryasharma630@gmail.com   # comma-separate several addresses
+ENQUIRY_ALERT_FROM=Insoft Website <website@insofttechnology.in>   # optional; needs the domain verified in Resend
+```
+
+Without `ENQUIRY_ALERT_FROM`, alerts are sent from Resend's test sender, `onboarding@resend.dev`. That sender only delivers to the email address the Resend account was created with.
+If the alert email fails, the enquiry is still saved.
+
 ## Deploying (Vercel)
 
 The project deploys on Vercel.
-1. Set `SUPABASE_URL` and `SUPABASE_ANON_KEY` in the Vercel project's environment variables, for Production and Preview.
+1. Set `SUPABASE_URL` and `SUPABASE_ANON_KEY` (and optionally the email-alert variables) in the Vercel project's environment variables, for Production and Preview.
 2. Push to the production branch.
 
 After deploying:

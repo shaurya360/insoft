@@ -8,7 +8,7 @@ export function Footer() {
         <div>
           <Image src="/insoft-technology-logo.png" alt="Insoft Technology" width={364} height={176} className="h-10 w-auto" />
           <p className="mt-4 max-w-sm text-sm text-ink-muted">
-            IT hardware supply, repairs and AMC for businesses and individuals, from Nehru Place, New Delhi.
+            Complete IT solutions for enterprises and companies, from Nehru Place, New Delhi. Delivery across India.
           </p>
           <p className="mt-3 text-sm text-ink-muted">GSTIN: {COMPANY.gstin}</p>
         </div>

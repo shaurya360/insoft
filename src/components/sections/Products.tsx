@@ -7,11 +7,11 @@ export function Products() {
         <div className="max-w-3xl">
           <p className="eyebrow">Products</p>
           <h2 id="products-title" className="h2">
-            Computers, networking and office IT hardware
+            Everything your business runs on, from servers to printers
           </h2>
           <p className="lead">
-            We supply individual units as well as bulk orders for offices, labs and new sites. Tell us what you need and we
-            will recommend suitable models and quote them.
+            We supply individual units as well as complete setups and bulk orders for offices, data rooms, labs and new
+            sites, and deliver across India. Tell us what you need and we will recommend suitable models and quote them.
           </p>
         </div>
 
@@ -23,9 +23,11 @@ export function Products() {
                   {group.title}
                 </h3>
                 <p className="mt-2 text-ink-muted">{group.summary}</p>
-                <p className="mt-3 text-sm text-ink-muted">
-                  <span className="font-semibold text-ink-soft">Brands:</span> {group.brands}
-                </p>
+                {group.brands && (
+                  <p className="mt-3 text-sm text-ink-muted">
+                    <span className="font-semibold text-ink-soft">Brands:</span> {group.brands}
+                  </p>
+                )}
               </div>
               <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
                 {group.items.map((item) => (

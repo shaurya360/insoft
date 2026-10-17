@@ -12,7 +12,7 @@ export type Logo = { name: string; src: string; width: number; height: number };
 export const CLIENTS: Logo[] = [
   { name: "Tata Motors", src: "/clients/tata-motors.png", width: 215, height: 160 },
   { name: "Apollo Tyres", src: "/clients/apollo-tyres.png", width: 136, height: 135 },
-  { name: "Nykaa", src: "/clients/nykaa.png", width: 179, height: 71 },
+  { name: "Nykaa", src: "/clients/nykaa.png", width: 480, height: 160 },
   { name: "Sterlite Power", src: "/clients/sterlite-power.png", width: 159, height: 160 },
   { name: "Uno Minda (Minda Industries Limited)", src: "/clients/uno-minda.png", width: 237, height: 133 },
   { name: "Spice Money", src: "/clients/spice-money.png", width: 134, height: 135 },

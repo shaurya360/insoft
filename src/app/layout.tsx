@@ -12,9 +12,9 @@ const plex = IBM_Plex_Sans({
   variable: "--font-sans",
 });
 
-const TITLE = "Insoft Technology | IT Hardware Supplier & Computer Repair in Nehru Place, Delhi";
+const TITLE = "Insoft Technology | Complete IT Solutions & Hardware Supplier, Nehru Place Delhi";
 const DESCRIPTION =
-  "Laptops, desktops, networking, CCTV, printers and storage for Delhi businesses, plus in-house repairs and AMC. 20+ years in Nehru Place. Get a quote.";
+  "Complete IT solutions for companies: servers, workstations, new & refurbished laptops, networking, firewalls, UPS and CCTV. 20+ years. Pan-India delivery.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -92,12 +92,12 @@ const jsonLd = {
           })),
           {
             "@type": "OfferCatalog",
-            name: "Repairs & AMC",
+            name: "Repairs",
             itemListElement: SERVICES.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.name } })),
           },
         ],
       },
-      sameAs: ["https://www.indiamart.com/insofttechnology/"],
+      sameAs: [COMPANY.googleProfileUrl],
     },
     {
       "@type": "WebSite",

@@ -2,19 +2,7 @@
 
 import { useRef, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
-import { COMPANY, WHATSAPP_URL } from "@/lib/site";
-
-const TOPICS = [
-  "Laptops / desktops",
-  "Bulk / office order",
-  "Networking / Wi-Fi",
-  "CCTV / surveillance",
-  "Printers / barcode / POS",
-  "Interactive panels",
-  "Repair",
-  "AMC",
-  "Other",
-];
+import { COMPANY, ENQUIRY_TOPICS as TOPICS, WHATSAPP_URL } from "@/lib/site";
 
 type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; message: string };
 

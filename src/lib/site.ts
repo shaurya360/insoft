@@ -28,6 +28,8 @@ export const COMPANY = {
   // Used for structured data (schema.org openingHoursSpecification)
   openingHours: { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "09:00", closes: "19:00" },
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Insoft+Technology+203+Harsh+Bhawan+Nehru+Place+New+Delhi+110019",
+  // Google Business Profile (share link)
+  googleProfileUrl: "https://share.google/tw1LFfa6OR4bogEqw",
 };
 
 export const WHATSAPP_URL = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent("Hello Insoft Technology, I'd like a quotation for ")}`;
@@ -35,7 +37,8 @@ export const WHATSAPP_URL = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIC
 export const NAV = [
   { href: "#about", label: "About" },
   { href: "#products", label: "Products" },
-  { href: "#services", label: "Repairs & AMC" },
+  { href: "#bulk-orders", label: "Bulk orders" },
+  { href: "#services", label: "Repairs" },
   { href: "#clients", label: "Clients" },
   { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
@@ -62,7 +65,7 @@ export type ProductGroup = {
   title: string;
   summary: string;
   items: { name: string; detail: string }[];
-  brands: string;
+  brands?: string;
 };
 
 export const PRODUCT_GROUPS: ProductGroup[] = [
@@ -73,11 +76,32 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     items: [
       { name: "Laptops & thin-and-light ultrabooks", detail: "Business-grade Intel Core i5/i7 and Apple Silicon models, 14\"–16\" displays." },
       { name: "Commercial desktops", detail: "Small-form-factor and tower PCs for offices, reception and admin teams." },
-      { name: "Custom PC builds", detail: "Gaming rigs and video-editing or rendering workstations built to your specification." },
-      { name: "Refurbished laptops", detail: "Tested and graded pre-owned laptops with warranty — a lower-cost option for bulk deployments and training labs." },
+      { name: "Custom PC builds", detail: "Gaming rigs and video-editing or rendering machines built to your specification." },
       { name: "Tablets", detail: "iPadOS and Android tablets for field sales, digital forms and point of sale." },
     ],
     brands: "Dell, HP, Lenovo, Apple, Acer, Samsung",
+  },
+  {
+    id: "servers",
+    title: "Servers & workstations",
+    summary: "Infrastructure for data centres, server rooms and demanding design or engineering work.",
+    items: [
+      { name: "Rack & tower servers", detail: "Servers for file sharing, ERP, databases, virtualisation and backup, sized to your workload." },
+      { name: "Workstations", detail: "Tower and mobile workstations with professional graphics for CAD, design, video and analytics." },
+      { name: "Server storage & NAS", detail: "Network storage and backup appliances for shared files and data protection." },
+    ],
+    brands: "Dell, HP, Lenovo",
+  },
+  {
+    id: "refurbished",
+    title: "Refurbished laptops & desktops",
+    summary: "Tested business-grade systems with warranty, at a lower cost than new.",
+    items: [
+      { name: "Refurbished laptops", detail: "Tested and graded pre-owned business laptops with warranty." },
+      { name: "Refurbished desktops", detail: "Tested and graded office desktops and small-form-factor PCs with warranty." },
+      { name: "Bulk lots", detail: "Matched batches for training labs, call centres, schools and new offices." },
+    ],
+    brands: "Dell, HP, Lenovo, Acer",
   },
   {
     id: "networking",
@@ -86,9 +110,29 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     items: [
       { name: "Wi-Fi 6/6E access points", detail: "Indoor and outdoor units, cloud or on-premises managed." },
       { name: "Managed L2/L3 PoE+ switches", detail: "24/48-port Gigabit and 10G, VLANs, L3 routing and stacking." },
-      { name: "Structured cabling", detail: "CAT6/CAT6A copper and fibre, racks, patch panels and cable management." },
+      { name: "Structured cabling", detail: "CAT6/CAT6A copper and fibre, patch panels and cable management." },
     ],
     brands: "Cisco, D-Link, TP-Link",
+  },
+  {
+    id: "security",
+    title: "Firewalls & network security",
+    summary: "Protect office networks and give staff secure access from outside.",
+    items: [
+      { name: "Firewalls & UTM appliances", detail: "Next-generation firewalls with web filtering, intrusion prevention and gateway antivirus." },
+      { name: "VPN & remote access", detail: "Site-to-site links between branches and secure remote access for employees." },
+    ],
+  },
+  {
+    id: "racks-power",
+    title: "Racks, UPS & power backup",
+    summary: "Housing and backup power for servers, network equipment and workstations.",
+    items: [
+      { name: "Server & network racks", detail: "Wall-mount and floor-standing racks with shelves, cooling fans, PDUs and cable managers." },
+      { name: "Online UPS", detail: "Backup power for servers, network racks and critical equipment." },
+      { name: "Offline / line-interactive UPS", detail: "Compact UPS units for desktops, POS counters and home offices." },
+      { name: "UPS batteries", detail: "Replacement batteries and external battery banks for longer backup time." },
+    ],
   },
   {
     id: "storage",
@@ -133,19 +177,30 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
   },
 ];
 
+export const BULK = {
+  uses: "New offices, branch roll-outs, training labs, call centres, schools and project sites",
+  points: [
+    { title: "Volume pricing", text: "Better per-unit prices on larger quantities, quoted in writing with GST." },
+    { title: "Identical configurations", text: "The same model and specification across the batch, so systems are easy to deploy and support." },
+    { title: "Configured and installed", text: "Operating system and software set up before dispatch, with on-site installation where needed." },
+    { title: "New or refurbished", text: "Choose new, refurbished or a mix of both to fit your budget." },
+    { title: "Delivered across India", text: "Same-day delivery on many in-stock items, and pan-India delivery for larger orders." },
+    { title: "One invoice, one contact", text: "Laptops, servers, networking, UPS and accessories on a single quotation and GST invoice." },
+  ],
+};
+
 export const SERVICES = [
   { name: "Laptop & desktop repair", detail: "Diagnosis and repair, including screen, battery and keyboard replacement." },
   { name: "Motherboard-level repair", detail: "Chip-level fault finding and component replacement, done in-house." },
   { name: "Printer repair", detail: "Mechanical faults, servicing and network printing setup." },
   { name: "Upgrades", detail: "RAM, SSD and graphics card upgrades to extend the life of existing systems." },
   { name: "Software & virus issues", detail: "Malware removal, OS reinstallation and system clean-up." },
-  { name: "Annual maintenance contracts (AMC)", detail: "Scheduled maintenance and priority repairs for your organisation's IT equipment." },
 ];
 
 export const REASONS = [
   {
-    title: "One partner for hardware, network and maintenance",
-    text: "Computers, networking, CCTV and printers come from one team that also installs and maintains them — so you are not coordinating several vendors.",
+    title: "A complete IT solutions provider",
+    text: "Servers, computers, networking, firewalls, racks, UPS, CCTV and printers come from one team that also installs and repairs them — so you are not coordinating several vendors.",
   },
   {
     title: "Certified engineers in-house",
@@ -156,8 +211,8 @@ export const REASONS = [
     text: "Every product comes with the manufacturer's warranty, backed by our own technical support.",
   },
   {
-    title: "Same-day delivery options",
-    text: "Many in-stock items can be delivered the same day; timelines for larger orders are confirmed in your quotation.",
+    title: "Same-day and pan-India delivery",
+    text: "Many in-stock items can be delivered the same day, and we deliver across India. Timelines for larger orders are confirmed in your quotation.",
   },
 ];
 
@@ -165,7 +220,7 @@ export const STEPS = [
   { title: "Share your requirement", text: "Call, WhatsApp or send the enquiry form with the products, quantities or problem you need help with." },
   { title: "Receive a quotation", text: "We send a written quotation with prices, GST, delivery time and payment terms." },
   { title: "Delivery & installation", text: "Products are delivered with a GST invoice and, where needed, installed and configured on site." },
-  { title: "Support after purchase", text: "Warranty support, repairs and optional AMC keep your equipment running." },
+  { title: "Support after purchase", text: "Warranty support and in-house repairs keep your equipment running." },
 ];
 
 export const FAQS = [
@@ -190,11 +245,32 @@ export const FAQS = [
     a: "Yes. Our in-house technicians handle laptop, desktop and printer repairs, including motherboard-level repair, part replacement and upgrades. Contact us with the model and the problem, or bring the device to our office.",
   },
   {
-    q: "Do you sell refurbished laptops?",
-    a: "Yes. We supply tested and graded refurbished laptops from Dell, HP, Lenovo and Acer, with warranty. They are a practical option for training labs and large deployments.",
+    q: "Do you sell refurbished laptops and desktops?",
+    a: "Yes. We supply tested and graded refurbished laptops and desktops from Dell, HP, Lenovo and Acer, with warranty. They are a practical option for training labs and large deployments.",
   },
   {
-    q: "Do you offer annual maintenance contracts (AMC)?",
-    a: "Yes. We offer AMC for computers, printers, networking and CCTV, handled by our own engineering team. Tell us what equipment you have and we will suggest a plan.",
+    q: "Can you set up the complete IT infrastructure for a new office?",
+    a: "Yes. We supply and install everything a new office or site needs — servers, workstations and laptops, networking and Wi-Fi, firewalls, racks, UPS, CCTV and printers — from one quotation.",
   },
+  {
+    q: "Do you deliver outside Delhi?",
+    a: "Yes. We deliver across India. Send us your requirement and delivery location, and the delivery time will be confirmed in your quotation.",
+  },
+];
+
+// Topics offered in the enquiry form (also validated by the /api/enquiry route).
+export const ENQUIRY_TOPICS = [
+  "Bulk order",
+  "Complete office / IT setup",
+  "Servers / workstations",
+  "Laptops / desktops",
+  "Refurbished laptops / desktops",
+  "Networking / Wi-Fi",
+  "Firewalls / network security",
+  "Racks / UPS",
+  "CCTV / surveillance",
+  "Printers / barcode / POS",
+  "Interactive panels",
+  "Repair",
+  "Other",
 ];

@@ -7,17 +7,17 @@ export function Services() {
     <section id="services" aria-labelledby="services-title" className="section bg-paper">
       <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
         <div>
-          <p className="eyebrow">Repairs &amp; AMC</p>
+          <p className="eyebrow">Repairs</p>
           <h2 id="services-title" className="h2">
             Computer, laptop and printer repairs in Nehru Place
           </h2>
           <p className="lead">
-            Our certified technicians diagnose, repair and maintain laptops, desktops and printers in-house. For
-            organisations, an annual maintenance contract covers scheduled servicing and priority repairs.
+            Our certified technicians diagnose and repair laptops, desktops and printers in-house, from screen and battery
+            replacements to motherboard-level faults.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a href="#contact" className="btn-primary">
-              Book a repair or AMC
+              Book a repair
             </a>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="btn-secondary">
               WhatsApp us

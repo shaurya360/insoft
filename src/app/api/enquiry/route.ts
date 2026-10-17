@@ -1,20 +1,59 @@
 import { NextResponse } from "next/server";
+import { ENQUIRY_TOPICS } from "@/lib/site";
 
 // Contact-form endpoint. Saves enquiries to Supabase (table public.enquiries)
 // through the submit_enquiry() database function, which validates and rate-limits.
 // Enquiries appear in the INSOFT admin app under "Enquiries".
 
-const TOPICS = new Set([
-  "Laptops / desktops",
-  "Bulk / office order",
-  "Networking / Wi-Fi",
-  "CCTV / surveillance",
-  "Printers / barcode / POS",
-  "Interactive panels",
-  "Repair",
-  "AMC",
-  "Other",
-]);
+const TOPICS = new Set(ENQUIRY_TOPICS);
+
+type Enquiry = { name: string; phone: string; email: string; company: string; topic: string; message: string };
+
+const escapeHtml = (s: string) =>
+  s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
+
+// Email alert for a saved enquiry, sent through Resend (https://resend.com).
+// Optional: skipped unless RESEND_API_KEY and ENQUIRY_ALERT_EMAIL are set. A failed alert never
+// fails the submission — the enquiry is already saved and visible in the admin app.
+async function sendAlert(e: Enquiry) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = process.env.ENQUIRY_ALERT_EMAIL;
+  if (!apiKey || !to) return;
+  const from = process.env.ENQUIRY_ALERT_FROM || "Insoft Website <onboarding@resend.dev>";
+  const rows: [string, string][] = [
+    ["Name", e.name],
+    ["Company", e.company],
+    ["Phone", e.phone],
+    ["Email", e.email],
+    ["Topic", e.topic],
+  ];
+  const html = `<h2 style="margin:0 0 12px">New website enquiry</h2>
+<table cellpadding="6" style="border-collapse:collapse">${rows
+    .filter(([, v]) => v)
+    .map(([k, v]) => `<tr><td style="color:#555">${k}</td><td><strong>${escapeHtml(v)}</strong></td></tr>`)
+    .join("")}</table>
+<p style="white-space:pre-wrap;border-left:3px solid #0056b3;padding-left:12px">${escapeHtml(e.message)}</p>
+<p style="color:#555">Also saved in the INSOFT admin app under Website Enquiries.</p>`;
+  const text = [...rows.filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`), "", e.message].join("\n");
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from,
+        to: to.split(",").map((s) => s.trim()).filter(Boolean),
+        subject: `New enquiry: ${e.name}${e.company ? ` (${e.company})` : ""}${e.topic ? ` · ${e.topic}` : ""}`,
+        html,
+        text,
+        ...(e.email ? { reply_to: e.email } : {}),
+      }),
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) console.error("Enquiry alert: Resend error", res.status, await res.text().catch(() => ""));
+  } catch (err) {
+    console.error("Enquiry alert: request failed", err);
+  }
+}
 
 type Body = {
   name?: unknown;
@@ -86,6 +125,7 @@ export async function POST(request: Request) {
         { status: msg ? 422 : 502 },
       );
     }
+    await sendAlert({ name, phone, email, company, topic, message });
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error("Enquiry form: request failed", e);

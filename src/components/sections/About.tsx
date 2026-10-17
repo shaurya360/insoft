@@ -17,7 +17,7 @@ export function About() {
               technology for corporate, industrial and government organisations, as well as individual buyers.
             </p>
             <p>
-              We handle sourcing, configuration, installation and ongoing maintenance under one roof. That means your
+              We handle sourcing, configuration, installation and repairs under one roof. That means your
               procurement and IT teams deal with a single accountable partner — from the first quotation to repairs years
               later — instead of coordinating several vendors.
             </p>
