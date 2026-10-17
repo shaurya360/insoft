@@ -258,7 +258,6 @@ export const BULK = {
 export const SERVICES = [
   { name: "Laptop & desktop repair", detail: "Diagnosis and repair, including screen, battery and keyboard replacement." },
   { name: "Motherboard-level repair", detail: "Chip-level fault finding and component replacement, done in-house." },
-  { name: "Printer repair", detail: "Mechanical faults, servicing and network printing setup." },
   { name: "Upgrades", detail: "RAM, SSD and graphics card upgrades to extend the life of existing systems." },
   { name: "Software & virus issues", detail: "Malware removal, OS reinstallation and system clean-up." },
 ];
@@ -316,7 +315,7 @@ export const FAQS = [
   },
   {
     q: "Do you repair laptops and computers?",
-    a: "Yes. Our in-house technicians handle laptop, desktop and printer repairs, including motherboard-level repair, part replacement and upgrades. Contact us with the model and the problem, or bring the device to our office.",
+    a: "Yes. Our in-house technicians handle laptop and desktop repairs, including motherboard-level repair, part replacement and upgrades. Contact us with the model and the problem, or bring the device to our office.",
   },
   {
     q: "Do you sell refurbished laptops and desktops?",

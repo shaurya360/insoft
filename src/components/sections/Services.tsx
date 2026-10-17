@@ -9,10 +9,10 @@ export function Services() {
         <div>
           <p className="eyebrow">Repairs</p>
           <h2 id="services-title" className="h2">
-            Computer, laptop and printer repairs in Nehru Place
+            Laptop and computer repairs in Nehru Place
           </h2>
           <p className="lead">
-            Our certified technicians diagnose and repair laptops, desktops and printers in-house, from screen and battery
+            Our certified technicians diagnose and repair laptops and desktops in-house, from screen and battery
             replacements to motherboard-level faults.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
