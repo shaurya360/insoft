@@ -265,7 +265,7 @@ export const SERVICES = [
 export const REASONS = [
   {
     title: "Bulk orders are our specialisation",
-    text: "Supplying companies in volume is the core of our business — laptops, desktops and network devices sourced at volume prices, configured identically, with delivery dates confirmed in your quotation.",
+    text: "Supplying companies in volume is the core of our business — laptops, desktops and network devices sourced at volume prices, configured identically, with delivery dates confirmed in your quotation. Small orders are just as welcome.",
   },
   {
     title: "A complete IT solutions provider",
@@ -303,7 +303,7 @@ export const FAQS = [
   },
   {
     q: "Do you supply companies and handle bulk orders?",
-    a: "Yes — bulk and corporate orders are our specialisation, and most of our work is for businesses and institutions. Send us the products and quantities you need and we will prepare a quotation with volume pricing, delivery time and payment terms.",
+    a: "Yes — bulk and corporate orders are our specialisation, and most of our work is for businesses and institutions. We also supply single units and small orders. Send us the products and quantities you need and we will prepare a quotation with pricing, delivery time and payment terms.",
   },
   {
     q: "Do you provide GST invoices?",

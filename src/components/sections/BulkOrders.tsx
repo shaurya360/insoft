@@ -11,7 +11,8 @@ export function BulkOrders() {
             We specialise in bulk and corporate orders — from a batch of laptops to a complete office
           </h2>
           <p className="mt-4 text-lg text-white/85">
-            {BULK.uses}. Send your quantities and specifications and we will return a written quotation with pricing,
+            {BULK.uses}. Need just one or two units? Small orders are equally welcome. Send your quantities and
+            specifications and we will return a written quotation with pricing,
             delivery time and payment terms.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

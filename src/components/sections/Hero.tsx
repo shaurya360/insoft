@@ -11,14 +11,14 @@ export function Hero() {
             Complete IT solutions provider for enterprises and companies in Delhi
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-ink-muted">
-            Insoft Technology is a complete IT solutions provider for enterprises and companies, specialising in bulk
-            orders — servers, workstations, new, refurbished and gaming laptops, desktops, networking, firewalls, racks,
-            UPS, CCTV and printers from Dell, HP, Lenovo, Apple and other leading brands, with in-house repairs and
-            delivery across India.
+            Insoft Technology is a complete IT solutions provider for enterprises and companies — servers, workstations,
+            new, refurbished and gaming laptops, desktops, networking, firewalls, racks, UPS, CCTV and printers from Dell,
+            HP, Lenovo, Apple and other leading brands. We specialise in bulk orders and are just as happy to supply a
+            single unit, with in-house repairs and delivery across India.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a href="#bulk-orders" className="btn-primary">
-              Get a bulk quotation
+            <a href="#contact" className="btn-primary">
+              Request a quotation
             </a>
             <a href={`tel:${COMPANY.phones[0].tel}`} className="btn-secondary">
               <Phone className="h-4 w-4" aria-hidden="true" />

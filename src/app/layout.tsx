@@ -14,7 +14,7 @@ const plex = IBM_Plex_Sans({
 
 const TITLE = "Insoft Technology | Bulk IT Hardware Supplier, Nehru Place Delhi";
 const DESCRIPTION =
-  "Bulk IT hardware supplier: servers, new, refurbished & gaming laptops, networking, firewalls and UPS. 20+ years in Nehru Place. Pan-India delivery.";
+  "IT hardware for bulk & small orders: servers, new, refurbished & gaming laptops, networking, firewalls, UPS. 20+ years in Nehru Place. Pan-India delivery.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
