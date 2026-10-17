@@ -6,9 +6,9 @@ export function BulkOrders() {
     <section id="bulk-orders" aria-labelledby="bulk-title" className="section bg-brand text-white">
       <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wider text-white/80">Bulk orders</p>
+          <p className="text-sm font-semibold uppercase tracking-wider text-white/80">Our specialisation</p>
           <h2 id="bulk-title" className="mt-3 text-[1.75rem] font-semibold leading-tight text-white sm:text-[2.1rem]">
-            Bulk and corporate orders, from a batch of laptops to a complete office
+            We specialise in bulk and corporate orders — from a batch of laptops to a complete office
           </h2>
           <p className="mt-4 text-lg text-white/85">
             {BULK.uses}. Send your quantities and specifications and we will return a written quotation with pricing,

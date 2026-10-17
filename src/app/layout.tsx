@@ -12,9 +12,9 @@ const plex = IBM_Plex_Sans({
   variable: "--font-sans",
 });
 
-const TITLE = "Insoft Technology | Complete IT Solutions & Hardware Supplier, Nehru Place Delhi";
+const TITLE = "Insoft Technology | Bulk IT Hardware Supplier, Nehru Place Delhi";
 const DESCRIPTION =
-  "Complete IT solutions for companies: servers, workstations, new & refurbished laptops, networking, firewalls, UPS and CCTV. 20+ years. Pan-India delivery.";
+  "Bulk IT hardware supplier: servers, new, refurbished & gaming laptops, networking, firewalls and UPS. 20+ years in Nehru Place. Pan-India delivery.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

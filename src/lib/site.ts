@@ -1,4 +1,4 @@
-// All company facts and page content in one place.
+﻿// All company facts and page content in one place.
 // Source: Insoft Technology product & solutions catalogue and the existing website.
 
 export const SITE_URL = "https://insofttechnology.in";
@@ -77,7 +77,7 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
       { name: "Business laptops & ultrabooks", detail: "Intel Core i5/i7 and Apple Silicon models with 14\"–16\" displays, for staff, managers and travelling teams." },
       { name: "Commercial desktops", detail: "Small-form-factor and tower PCs for offices, reception, accounts and admin teams." },
       { name: "All-in-one PCs", detail: "Space-saving desktops for front desks, counters and shared workstations." },
-      { name: "Custom PC builds", detail: "Gaming rigs and video-editing or rendering machines built to your specification." },
+      { name: "Custom PC builds", detail: "Video-editing and rendering machines built to your specification." },
       { name: "Tablets", detail: "iPadOS and Android tablets for field sales, digital forms and point of sale." },
       { name: "Monitors & accessories", detail: "Monitors, keyboards, mice, webcams, headsets, docking stations and bags." },
     ],
@@ -107,6 +107,18 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
       { name: "Upgrades on request", detail: "Extra RAM or an SSD fitted before delivery to extend the life of each system." },
     ],
     brands: "Dell, HP, Lenovo, Acer",
+  },
+  {
+    id: "gaming",
+    title: "Gaming laptops & PCs",
+    summary: "High-performance laptops and desktops for gaming, streaming and creative work.",
+    items: [
+      { name: "Gaming laptops", detail: "ASUS ROG and TUF, Acer Predator and Nitro, Lenovo Legion, HP OMEN and Victus, and Dell Alienware models with dedicated graphics and high-refresh displays." },
+      { name: "Custom gaming PCs", detail: "Gaming rigs built to your budget, with the processor, graphics card, cooling and cabinet you choose." },
+      { name: "Upgrades", detail: "Graphics cards, RAM, NVMe SSDs and power supplies to upgrade an existing gaming PC." },
+      { name: "Gaming peripherals", detail: "Gaming monitors, mechanical keyboards, mice and headsets." },
+    ],
+    brands: "ASUS, Acer, Lenovo, HP, Dell, Logitech",
   },
   {
     id: "networking",
@@ -232,7 +244,7 @@ export const SOLUTIONS = [
 ];
 
 export const BULK = {
-  uses: "New offices, branch roll-outs, training labs, call centres, schools and project sites",
+  uses: "Bulk supply is what we do best — for new offices, branch roll-outs, training labs, call centres, schools and project sites",
   points: [
     { title: "Volume pricing", text: "Better per-unit prices on larger quantities, quoted in writing with GST." },
     { title: "Identical configurations", text: "The same model and specification across the batch, so systems are easy to deploy and support." },
@@ -253,6 +265,10 @@ export const SERVICES = [
 
 export const REASONS = [
   {
+    title: "Bulk orders are our specialisation",
+    text: "Supplying companies in volume is the core of our business — laptops, desktops and network devices sourced at volume prices, configured identically, with delivery dates confirmed in your quotation.",
+  },
+  {
     title: "A complete IT solutions provider",
     text: "Servers, computers, networking, firewalls, racks, UPS, CCTV and printers come from one team that also installs and repairs them — so you are not coordinating several vendors.",
   },
@@ -267,6 +283,10 @@ export const REASONS = [
   {
     title: "Same-day and pan-India delivery",
     text: "Many in-stock items can be delivered the same day, and we deliver across India. Timelines for larger orders are confirmed in your quotation.",
+  },
+  {
+    title: "GST invoice on every order",
+    text: "We are a GST-registered business, so every order is billed with a proper GST invoice for your accounts and input tax credit.",
   },
 ];
 
@@ -284,7 +304,7 @@ export const FAQS = [
   },
   {
     q: "Do you supply companies and handle bulk orders?",
-    a: "Yes. Most of our work is for businesses and institutions. Send us your requirement and we will prepare a quotation with bulk pricing, delivery time and payment terms.",
+    a: "Yes — bulk and corporate orders are our specialisation, and most of our work is for businesses and institutions. Send us the products and quantities you need and we will prepare a quotation with volume pricing, delivery time and payment terms.",
   },
   {
     q: "Do you provide GST invoices?",
@@ -310,6 +330,10 @@ export const FAQS = [
     q: "Do you deliver outside Delhi?",
     a: "Yes. We deliver across India. Send us your requirement and delivery location, and the delivery time will be confirmed in your quotation.",
   },  {
+    q: "Do you sell gaming laptops?",
+    a: "Yes. We supply gaming laptops from ASUS ROG and TUF, Acer Predator and Nitro, Lenovo Legion, HP OMEN and Victus, and Dell Alienware, and build custom gaming PCs to your budget.",
+  },
+  {
     q: "Which firewalls do you supply and install?",
     a: "We supply and configure Sophos and Fortinet firewalls, from small-office models to appliances for large networks. Our engineers set up the policies, web filtering and VPN access, and we handle licence renewals.",
   },
@@ -347,6 +371,7 @@ export const ENQUIRY_TOPICS = [
   "Servers / workstations",
   "Laptops / desktops",
   "Refurbished laptops / desktops",
+  "Gaming laptops / PCs",
   "Networking / Wi-Fi",
   "Firewalls / network security",
   "Racks / UPS",
