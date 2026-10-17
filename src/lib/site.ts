@@ -7,10 +7,10 @@ export const COMPANY = {
   name: "Insoft Technology",
   legalName: "INSOFT TECHNOLOGY",
   phones: [
-    { display: "+91 93110 05448", tel: "+919311005448" },
     { display: "+91 88000 06700", tel: "+918800006700" },
+    { display: "+91 93110 05448", tel: "+919311005448" },
   ],
-  whatsapp: "919311005448",
+  whatsapp: "918800006700",
   email: "info@insofttechnology.in",
   gstin: "07ANZPS2464A1ZN",
   address: {
