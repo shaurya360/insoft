@@ -46,7 +46,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-line">
-        <p className="container-page py-5 text-sm text-ink-muted">
+        <p className="container-page pb-24 pt-5 text-sm text-ink-muted sm:pb-5">
           © {new Date().getFullYear()} {COMPANY.name}. All rights reserved.
         </p>
       </div>

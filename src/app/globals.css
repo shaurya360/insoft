@@ -263,3 +263,14 @@ details.faq[open]::details-content {
 .menu-in:not([hidden]) {
   animation: menu-in 0.35s var(--ease-fluid);
 }
+
+/* Floating WhatsApp button: pops in after load */
+@keyframes wa-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.85);
+  }
+}
+.wa-float {
+  animation: wa-in 0.6s var(--ease-fluid) 0.8s both;
+}

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { COMPANY, SITE_URL, PRODUCT_GROUPS, SERVICES } from "@/lib/site";
 
 const plex = IBM_Plex_Sans({
@@ -124,6 +125,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <WhatsAppButton />
         <Reveal />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
