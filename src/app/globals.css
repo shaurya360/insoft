@@ -5,6 +5,9 @@
 @layer base {
   :root {
     color-scheme: light;
+    --ease-fluid: cubic-bezier(0.22, 1, 0.36, 1);
+    /* Lets <details> animate to its natural height (Chromium 129+; others just snap open) */
+    interpolate-size: allow-keywords;
   }
 
   html {
@@ -63,27 +66,200 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-base font-semibold transition-colors;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold;
+    transition:
+      transform 0.35s var(--ease-fluid),
+      box-shadow 0.35s var(--ease-fluid),
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      color 0.25s ease;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn:active {
+    transform: translateY(0) scale(0.98);
   }
 
   .btn-primary {
-    @apply btn bg-brand text-white hover:bg-brand-dark;
+    @apply btn bg-brand text-white shadow-[0_6px_20px_-8px_rgba(0,86,179,0.6)] hover:bg-brand-dark hover:shadow-[0_12px_28px_-10px_rgba(0,86,179,0.65)];
   }
 
   .btn-secondary {
-    @apply btn border border-line bg-white text-ink hover:border-ink-muted;
+    @apply btn border border-line bg-white text-ink hover:border-brand/40 hover:shadow-[0_10px_24px_-14px_rgba(15,23,42,0.35)];
   }
 
   .link {
     @apply font-medium text-brand underline-offset-4 hover:underline;
   }
+
+  /* Cards that lift gently on hover */
+  .lift {
+    transition:
+      transform 0.45s var(--ease-fluid),
+      box-shadow 0.45s var(--ease-fluid),
+      border-color 0.3s ease;
+  }
+  .lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -24px rgba(15, 23, 42, 0.28);
+  }
+
+  /* Nav links with a sliding underline */
+  .nav-link {
+    @apply relative py-1 transition-colors hover:text-brand;
+  }
+  .nav-link::after {
+    content: "";
+    @apply absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-brand;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s var(--ease-fluid);
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* ---------- Motion ---------- */
+
+/* Scroll reveal (classes added by <Reveal />) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s var(--ease-fluid),
+    transform 0.9s var(--ease-fluid);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero entrance — the heading only slides (never hidden) so it paints immediately */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+@keyframes slide-up {
+  from {
+    transform: translateY(14px);
+  }
+}
+.hero-title {
+  animation: slide-up 0.9s var(--ease-fluid) both;
+}
+.hero-in {
+  animation: rise 0.9s var(--ease-fluid) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Liquid gradient shapes behind the hero */
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.7;
+  will-change: transform;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(6%, -8%, 0) scale(1.15) rotate(25deg);
+  }
+  100% {
+    transform: translate3d(-8%, 6%, 0) scale(0.92) rotate(-15deg);
+  }
+}
+
+/* Brand strip that glides continuously */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  animation: marquee 45s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Thin progress bar under the header, driven by page scroll (no JS) */
+.scroll-progress {
+  display: none;
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block;
+    transform-origin: left;
+    animation: grow linear both;
+    animation-timeline: scroll(root);
+  }
+  @keyframes grow {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* Smooth FAQ open/close */
+details.faq::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 0.45s var(--ease-fluid),
+    content-visibility 0.45s allow-discrete;
+}
+details.faq[open]::details-content {
+  block-size: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .marquee {
+    mask-image: none;
+  }
+  .marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+  }
+  .marquee-dup {
+    display: none;
+  }
+  .blob {
+    animation: none;
+  }
+
   *,
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+}
+
+/* Mobile menu slides down */
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+.menu-in:not([hidden]) {
+  animation: menu-in 0.35s var(--ease-fluid);
 }

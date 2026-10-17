@@ -74,7 +74,7 @@ export function Contact() {
               </dl>
             </address>
 
-            <div className="mt-8 aspect-[4/3] overflow-hidden rounded-lg border border-line bg-white">
+            <div className="mt-8 aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-white">
               <iframe
                 title="Map showing Insoft Technology, Harsh Bhawan, Nehru Place, New Delhi"
                 src="https://maps.google.com/maps?q=203,+Harsh+Bhawan,+64-65+Nehru+Place,+New+Delhi+110019&output=embed"

@@ -7,7 +7,7 @@ import { COMPANY, ENQUIRY_TOPICS as TOPICS, WHATSAPP_URL } from "@/lib/site";
 type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; message: string };
 
 const inputClass =
-  "mt-1.5 block w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-base text-ink placeholder:text-ink-muted/70 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 aria-[invalid=true]:border-red-600";
+  "mt-1.5 block w-full rounded-xl border border-line bg-white px-3.5 py-2.5 text-base text-ink placeholder:text-ink-muted/70 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 aria-[invalid=true]:border-red-600";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
@@ -58,7 +58,7 @@ export function ContactForm() {
 
   if (status.kind === "sent") {
     return (
-      <div role="status" className="rounded-lg border border-line bg-white p-8">
+      <div role="status" className="rounded-2xl border border-line bg-white p-8">
         <CheckCircle2 className="h-8 w-8 text-green-700" aria-hidden="true" />
         <h3 className="mt-3 text-xl font-semibold">Thank you — your enquiry has been sent</h3>
         <p className="mt-2 text-ink-muted">
@@ -76,7 +76,7 @@ export function ContactForm() {
   }
 
   return (
-    <form noValidate onSubmit={onSubmit} className="relative rounded-lg border border-line bg-white p-6 sm:p-8" aria-labelledby="form-title">
+    <form noValidate onSubmit={onSubmit} className="relative rounded-2xl border border-line bg-white p-6 sm:p-8" aria-labelledby="form-title">
       <h3 id="form-title" className="text-xl font-semibold">
         Send an enquiry
       </h3>
@@ -130,7 +130,7 @@ export function ContactForm() {
       </div>
 
       {status.kind === "error" && (
-        <p ref={errorRef} tabIndex={-1} role="alert" className="mt-5 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <p ref={errorRef} tabIndex={-1} role="alert" className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
           {status.message}{" "}
           <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="font-semibold underline">
             Message us on WhatsApp

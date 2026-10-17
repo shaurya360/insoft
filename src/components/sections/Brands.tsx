@@ -10,28 +10,43 @@ function logoHeight(l: Logo) {
   return 40;
 }
 
+function LogoList({ duplicate = false }: { duplicate?: boolean }) {
+  return (
+    <ul
+      className={`flex shrink-0 items-center gap-x-14 pr-14 ${duplicate ? "marquee-dup" : ""}`}
+      aria-hidden={duplicate || undefined}
+    >
+      {BRANDS.map((b) => (
+        <li key={b.name} className="flex h-10 shrink-0 items-center justify-center">
+          <Image
+            src={b.src}
+            alt={duplicate ? "" : b.name}
+            width={b.width}
+            height={b.height}
+            sizes="180px"
+            style={{ height: logoHeight(b) }}
+            className="w-auto max-w-[10rem] object-contain"
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function Brands() {
   return (
     <section aria-labelledby="brands-title" className="border-b border-line">
-      <div className="container-page py-10">
+      <div className="py-10">
         <h2 id="brands-title" className="text-center text-sm font-semibold uppercase tracking-wider text-ink-muted">
           Brands we deal in
         </h2>
-        <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
-          {BRANDS.map((b) => (
-            <li key={b.name} className="flex h-10 items-center justify-center">
-              <Image
-                src={b.src}
-                alt={b.name}
-                width={b.width}
-                height={b.height}
-                sizes="180px"
-                style={{ height: logoHeight(b) }}
-                className="w-auto max-w-[9rem] object-contain sm:max-w-[10rem]"
-              />
-            </li>
-          ))}
-        </ul>
+        {/* The list is rendered twice so the strip can loop seamlessly; the copy is hidden from screen readers. */}
+        <div className="marquee mt-7 overflow-hidden">
+          <div className="marquee-track flex w-max">
+            <LogoList />
+            <LogoList duplicate />
+          </div>
+        </div>
       </div>
     </section>
   );

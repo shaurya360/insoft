@@ -18,7 +18,7 @@ export function BulkOrders() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-white px-5 py-3 font-semibold text-brand transition-colors hover:bg-brand-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="btn whitespace-nowrap bg-white text-brand shadow-[0_10px_30px_-12px_rgba(0,0,0,0.45)] hover:bg-brand-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Request a bulk quotation
             </a>
@@ -26,16 +26,16 @@ export function BulkOrders() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-white/60 px-5 py-3 font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="btn whitespace-nowrap border border-white/60 text-white hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               <MessageCircle className="h-4 w-4" aria-hidden="true" />
               WhatsApp your list
             </a>
           </div>
         </div>
-        <ul className="grid gap-px self-start overflow-hidden rounded-lg bg-white/20 sm:grid-cols-2">
+        <ul className="grid gap-px self-start overflow-hidden rounded-2xl bg-white/20 sm:grid-cols-2">
           {BULK.points.map((p) => (
-            <li key={p.title} className="bg-brand p-5 sm:p-6">
+            <li key={p.title} className="bg-brand p-5 transition-colors duration-500 hover:bg-brand-dark sm:p-6">
               <h3 className="text-lg font-semibold text-white">{p.title}</h3>
               <p className="mt-1.5 text-white/85">{p.text}</p>
             </li>

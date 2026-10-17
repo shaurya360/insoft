@@ -7,7 +7,16 @@ import { COMPANY, NAV } from "@/lib/site";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  // Header turns into frosted glass with a soft shadow once the page scrolls
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Close the mobile menu with Escape and return focus to the toggle
   useEffect(() => {
@@ -23,7 +32,13 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90">
+    <header
+      className={`sticky top-0 z-50 border-b backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-500 ${
+        scrolled
+          ? "border-line/70 bg-white/80 shadow-[0_8px_30px_-18px_rgba(15,23,42,0.35)]"
+          : "border-transparent bg-white/95"
+      }`}
+    >
       <div className="container-page flex h-16 items-center justify-between gap-6">
         <a href="#top" className="flex shrink-0 items-center" aria-label="Insoft Technology — back to top">
           <Image
@@ -40,7 +55,7 @@ export function Header() {
           <ul className="flex items-center gap-7 text-[0.95rem] font-medium text-ink-soft">
             {NAV.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="hover:text-brand">
+                <a href={item.href} className="nav-link">
                   {item.label}
                 </a>
               </li>
@@ -61,7 +76,7 @@ export function Header() {
         <button
           ref={buttonRef}
           type="button"
-          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-ink lg:hidden"
+          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-paper lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -71,7 +86,12 @@ export function Header() {
         </button>
       </div>
 
-      <div id="mobile-menu" hidden={!open} className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-y border-line bg-white shadow-lg lg:hidden">
+      <div
+        className="scroll-progress absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-brand via-sky-400 to-brand"
+        aria-hidden="true"
+      />
+
+      <div id="mobile-menu" hidden={!open} className="menu-in absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-y border-line bg-white/95 shadow-lg backdrop-blur-xl lg:hidden">
         <nav aria-label="Mobile" className="container-page py-3">
           <ul className="divide-y divide-line">
             {NAV.map((item) => (

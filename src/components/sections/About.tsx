@@ -27,7 +27,7 @@ export function About() {
             </p>
           </div>
         </div>
-        <figure className="overflow-hidden rounded-lg border border-line">
+        <figure className="overflow-hidden rounded-2xl border border-line">
           <Image
             src="/images/network-patch-panel.webp"
             alt="Network switch with patched Ethernet cables in a server rack"
