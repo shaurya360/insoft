@@ -1,4 +1,4 @@
-﻿// All company facts and page content in one place.
+// All company facts and page content in one place.
 // Source: Insoft Technology product & solutions catalogue and the existing website.
 
 export const SITE_URL = "https://insofttechnology.in";
