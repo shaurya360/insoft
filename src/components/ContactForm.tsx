@@ -1,8 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, LoaderCircle } from "lucide-react";
 import { COMPANY, ENQUIRY_TOPICS as TOPICS, WHATSAPP_URL } from "@/lib/site";
+import { QUOTE_EVENT } from "@/components/QuoteBuilder";
+
+const QUOTE_PREFIX = "I'd like a quotation for:";
 
 type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; message: string };
 
@@ -14,6 +17,41 @@ export function ContactForm() {
   const [invalid, setInvalid] = useState<Record<string, boolean>>({});
   const startedAt = useRef(Date.now());
   const errorRef = useRef<HTMLParagraphElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const pending = useRef<{ message: string; topic: string } | null>(null);
+
+  // Prefill from the bulk quote builder. A previous list is replaced; anything else the
+  // visitor already typed is kept, with the list added after it.
+  const applyQuote = () => {
+    const form = formRef.current;
+    const q = pending.current;
+    if (!form || !q) return;
+    pending.current = null;
+    const msg = form.elements.namedItem("message") as HTMLTextAreaElement;
+    const topic = form.elements.namedItem("topic") as HTMLSelectElement;
+    const current = msg.value.trim();
+    msg.value = !current || current.startsWith(QUOTE_PREFIX) ? q.message : `${current}\n\n${q.message}`;
+    if (TOPICS.includes(q.topic)) topic.value = q.topic;
+    msg.classList.remove("prefilled");
+    void msg.offsetWidth; // restart the highlight animation
+    msg.classList.add("prefilled");
+    setInvalid((v) => ({ ...v, message: false }));
+    (form.elements.namedItem("name") as HTMLInputElement).focus({ preventScroll: true });
+  };
+
+  useEffect(() => {
+    const onQuote = (e: Event) => {
+      pending.current = (e as CustomEvent<{ message: string; topic: string }>).detail;
+      if (formRef.current) applyQuote();
+      else setStatus({ kind: "idle" }); // "thank you" screen showing: bring the form back, then fill it
+    };
+    window.addEventListener(QUOTE_EVENT, onQuote);
+    return () => window.removeEventListener(QUOTE_EVENT, onQuote);
+  }, []);
+
+  useEffect(() => {
+    if (status.kind === "idle") applyQuote();
+  }, [status.kind]);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -76,7 +114,7 @@ export function ContactForm() {
   }
 
   return (
-    <form noValidate onSubmit={onSubmit} className="relative rounded-2xl border border-line bg-white p-6 sm:p-8" aria-labelledby="form-title">
+    <form ref={formRef} noValidate onSubmit={onSubmit} className="relative rounded-2xl border border-line bg-white p-6 sm:p-8" aria-labelledby="form-title">
       <h3 id="form-title" className="text-xl font-semibold">
         Send an enquiry
       </h3>
@@ -139,7 +177,7 @@ export function ContactForm() {
       )}
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <button type="submit" className="btn-primary disabled:opacity-70" disabled={status.kind === "sending"}>
+        <button type="submit" className="btn-primary disabled:cursor-progress disabled:opacity-70" disabled={status.kind === "sending"}>
           {status.kind === "sending" && <LoaderCircle className="spinner h-4 w-4" aria-hidden="true" />}
           {status.kind === "sending" ? "Sending…" : "Send enquiry"}
         </button>

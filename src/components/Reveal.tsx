@@ -33,7 +33,25 @@ export function Reveal() {
       : null;
     if (hero && heroIO) heroIO.observe(hero);
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // Illustrations ([data-ambient]) animate only while visible: CSS animations follow
+    // data-playing; SVG <animate> (SMIL) is paused/resumed directly.
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const smil = (el: Element, play: boolean) => {
+      if (el instanceof SVGSVGElement) (play ? el.unpauseAnimations() : el.pauseAnimations());
+    };
+    const ambient = document.querySelectorAll("[data-ambient]");
+    ambient.forEach((el) => smil(el, false));
+    const ambientIO = reduce
+      ? null
+      : new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            e.target.toggleAttribute("data-playing", e.isIntersecting);
+            smil(e.target, e.isIntersecting);
+          }
+        });
+    if (ambientIO) ambient.forEach((el) => ambientIO.observe(el));
+
+    if (reduce) {
       return () => heroIO?.disconnect();
     }
 
@@ -81,6 +99,7 @@ export function Reveal() {
     return () => {
       io.disconnect();
       heroIO?.disconnect();
+      ambientIO?.disconnect();
       document.removeEventListener("transitionend", onEnd);
     };
   }, []);

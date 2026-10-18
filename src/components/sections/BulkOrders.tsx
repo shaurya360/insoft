@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import { QuoteBuilder } from "@/components/QuoteBuilder";
 import { BULK, WHATSAPP_URL } from "@/lib/site";
 
 export function BulkOrders() {
@@ -17,10 +18,10 @@ export function BulkOrders() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
-              href="#contact"
+              href="#quote-builder"
               className="btn whitespace-nowrap bg-white text-brand shadow-[0_10px_30px_-12px_rgba(0,0,0,0.45)] hover:bg-brand-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              Request a bulk quotation
+              Build your quote
             </a>
             <a
               href={WHATSAPP_URL}
@@ -41,6 +42,9 @@ export function BulkOrders() {
             </li>
           ))}
         </ul>
+        <div id="quote-builder" className="scroll-mt-24 lg:col-span-2">
+          <QuoteBuilder />
+        </div>
       </div>
     </section>
   );

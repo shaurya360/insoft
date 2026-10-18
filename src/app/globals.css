@@ -115,8 +115,29 @@
     transition-duration: var(--dur-press);
   }
   .btn:disabled {
-    @apply cursor-progress;
+    @apply cursor-not-allowed;
     transform: none;
+  }
+
+  /* Quantity steppers in the quote builder */
+  .stepper {
+    @apply inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line bg-white text-ink-soft;
+    transition:
+      transform var(--dur-press) var(--ease-out),
+      background-color var(--dur-micro) var(--ease-out),
+      border-color var(--dur-micro) var(--ease-out),
+      color var(--dur-micro) var(--ease-out);
+  }
+  .stepper:active:not(:disabled) {
+    transform: scale(0.9);
+  }
+  .stepper:disabled {
+    @apply cursor-not-allowed opacity-40;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .stepper:hover:not(:disabled) {
+      @apply border-brand text-brand;
+    }
   }
 
   .btn-primary {
@@ -233,6 +254,11 @@
   animation: rise 1s var(--ease-out) backwards;
   animation-delay: var(--d, 0ms);
 }
+/* Large text blocks slide without fading, so they count as painted straight away (LCP) */
+.hero-slide {
+  animation: slide-up 1s var(--ease-out) backwards;
+  animation-delay: var(--d, 0ms);
+}
 
 /* Liquid shapes: soft radial gradients (no blur filter, so nothing is
    re-filtered each frame) drifting with transform only. Paused while the
@@ -287,23 +313,6 @@
       }
     }
 
-    /* Subtle depth on photos: the image drifts inside its frame while scrolling */
-    .parallax {
-      overflow: hidden;
-    }
-    .parallax img {
-      animation: parallax linear both;
-      animation-timeline: view();
-      animation-range: cover;
-    }
-    @keyframes parallax {
-      from {
-        transform: translate3d(0, -4%, 0) scale(1.1);
-      }
-      to {
-        transform: translate3d(0, 4%, 0) scale(1.1);
-      }
-    }
   }
 }
 
@@ -431,6 +440,135 @@ details.faq[open] > :not(summary) {
 }
 
 /* =====================================================================
+   Product list dialog — centred card on larger screens, bottom sheet on
+   phones. Opens with ease-out, closes faster; backdrop dims in step.
+   ===================================================================== */
+html {
+  scrollbar-gutter: stable; /* page doesn't shift when scrolling is locked */
+}
+html:has(dialog.sheet[open]) {
+  overflow: hidden;
+}
+dialog.sheet {
+  width: min(42rem, calc(100% - 2rem));
+  max-width: none;
+  max-height: min(85vh, 46rem);
+  margin: auto;
+  padding: 0;
+  border: 1px solid #e3e6ea;
+  border-radius: 1.25rem;
+  background: #fff;
+  color: inherit;
+  overflow: hidden;
+  box-shadow: 0 30px 80px -30px rgba(15, 23, 42, 0.45);
+  opacity: 0;
+  transform: translate3d(0, 12px, 0) scale(0.98);
+  transition:
+    opacity var(--dur-micro) var(--ease-in),
+    transform var(--dur-micro) var(--ease-in),
+    overlay var(--dur-micro) allow-discrete,
+    display var(--dur-micro) allow-discrete;
+}
+dialog.sheet[open] {
+  opacity: 1;
+  transform: none;
+  transition-timing-function: var(--ease-out);
+  transition-duration: var(--dur-ui);
+}
+@starting-style {
+  dialog.sheet[open] {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.98);
+  }
+}
+dialog.sheet::backdrop {
+  background-color: rgba(15, 23, 42, 0);
+  transition:
+    background-color var(--dur-micro) var(--ease-in),
+    overlay var(--dur-micro) allow-discrete,
+    display var(--dur-micro) allow-discrete;
+}
+dialog.sheet[open]::backdrop {
+  background-color: rgba(15, 23, 42, 0.45);
+  transition-duration: var(--dur-ui);
+}
+@starting-style {
+  dialog.sheet[open]::backdrop {
+    background-color: rgba(15, 23, 42, 0);
+  }
+}
+.sheet-panel {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+}
+@media (max-width: 639px) {
+  dialog.sheet {
+    width: 100%;
+    max-height: 88dvh;
+    margin: auto 0 0;
+    border-radius: 1.25rem 1.25rem 0 0;
+    border-bottom: 0;
+    padding-bottom: env(safe-area-inset-bottom);
+    opacity: 1;
+    transform: translate3d(0, 100%, 0);
+  }
+  dialog.sheet[open] {
+    transform: none;
+  }
+  @starting-style {
+    dialog.sheet[open] {
+      opacity: 1;
+      transform: translate3d(0, 100%, 0);
+    }
+  }
+}
+
+/* =====================================================================
+   Illustrations — gentle ambient motion, paused off screen. <Reveal /> sets
+   data-playing on [data-ambient] elements while they are visible.
+   ===================================================================== */
+[data-ambient]:not([data-playing]) * {
+  animation-play-state: paused !important;
+}
+@keyframes led {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.led {
+  animation: led 1.6s steps(2, jump-none) infinite;
+}
+@keyframes diag-fill {
+  0% { transform: scaleX(0); }
+  35%, 88% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+@keyframes diag-done {
+  0%, 33% { opacity: 0; transform: scale(0.5); }
+  42%, 88% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: none; }
+}
+.diag-bar {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: diag-fill 5s var(--ease-out) infinite backwards;
+}
+.diag-check {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: diag-done 5s var(--ease-out) infinite backwards;
+}
+
+/* Enquiry message briefly highlighted after the quote builder fills it */
+@keyframes prefilled {
+  0% { box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.35); border-color: #0056b3; }
+  100% { box-shadow: 0 0 0 0 rgba(0, 86, 179, 0); }
+}
+.prefilled {
+  animation: prefilled 1.6s var(--ease-out);
+}
+
+/* =====================================================================
    Small entrances
    ===================================================================== */
 @keyframes fade-up {
@@ -482,7 +620,11 @@ details.faq[open] > :not(summary) {
   .marquee-dup {
     display: none;
   }
+  .led,
+  .diag-bar,
+  .diag-check,
   .blob,
+  .hero-slide,
   .hero-title,
   .hero-in,
   .wa-float,

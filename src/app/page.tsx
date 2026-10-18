@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/Hero";
 import { Brands } from "@/components/sections/Brands";
+import { TrustBand } from "@/components/sections/TrustBand";
 import { About } from "@/components/sections/About";
 import { Solutions } from "@/components/sections/Solutions";
 import { Products } from "@/components/sections/Products";
@@ -16,6 +17,7 @@ export default function Home() {
     <>
       <Hero />
       <Brands />
+      <TrustBand />
       <About />
       <Solutions />
       <Products />

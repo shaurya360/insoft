@@ -30,6 +30,9 @@ export const COMPANY = {
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Insoft+Technology+203+Harsh+Bhawan+Nehru+Place+New+Delhi+110019",
   // Google Business Profile (share link)
   googleProfileUrl: "https://share.google/tw1LFfa6OR4bogEqw",
+  // Star rating shown on the Google Business Profile (shown on the page only; the
+  // review count is deliberately not displayed). Update when it changes.
+  googleRating: 4.6,
 };
 
 export const WHATSAPP_URL = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent("Hello Insoft Technology, I'd like a quotation for ")}`;
@@ -50,14 +53,38 @@ export const FIGURES = [
   { value: "100%", label: "certified technicians" },
 ];
 
-export const SECTORS = [
-  "Manufacturing",
-  "Banking & financial services",
-  "Retail",
-  "FMCG",
-  "Real estate",
-  "MNCs",
-  "Government organisations",
+// Sectors from the company catalogue, with what we typically supply to each
+export const INDUSTRIES = [
+  { id: "manufacturing", name: "Manufacturing", text: "Desktops for plant offices, CCTV for factories and warehouses, and UPS backup." },
+  { id: "banking", name: "Banking & financial services", text: "Secure workstations, firewalls and VPN for branches, with reliable power backup." },
+  { id: "retail", name: "Retail", text: "Billing PCs, barcode scanners, receipt printers and CCTV for stores." },
+  { id: "fmcg", name: "FMCG", text: "Laptops for sales teams, tablets for field orders and networking for depots." },
+  { id: "real-estate", name: "Real estate", text: "Site-office setups, Wi-Fi and CCTV for projects and sales offices." },
+  { id: "mnc", name: "MNCs", text: "Standardised laptop roll-outs, servers and network security across offices." },
+  { id: "government", name: "Government organisations", text: "Desktops, printers and networking, billed with GST invoices." },
+];
+
+// Short trust points shown in the band under the hero
+export const TRUST_POINTS = [
+  { id: "gst", title: "GST-registered", text: "Proper GST invoice on every order" },
+  { id: "warranty", title: "Genuine, with warranty", text: "Manufacturer warranty on all products" },
+  { id: "same-day", title: "Same-day delivery", text: "On many in-stock items" },
+  { id: "pan-india", title: "Pan-India delivery", text: "Single units or bulk, anywhere in India" },
+  { id: "repairs", title: "In-house repairs", text: "Certified technicians, chip-level work" },
+];
+
+// Items offered in the bulk quote builder (product categories, not prices)
+export const QUOTE_ITEMS = [
+  { id: "laptops", name: "Laptops" },
+  { id: "desktops", name: "Desktops" },
+  { id: "refurbished", name: "Refurbished laptops" },
+  { id: "servers", name: "Servers" },
+  { id: "switches", name: "Network switches" },
+  { id: "access-points", name: "Wi-Fi access points" },
+  { id: "firewall", name: "Firewalls" },
+  { id: "ups", name: "UPS" },
+  { id: "cctv", name: "CCTV cameras" },
+  { id: "printers", name: "Printers" },
 ];
 
 export type ProductGroup = {

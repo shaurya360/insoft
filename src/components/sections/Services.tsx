@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { RepairArt } from "@/components/art/RepairArt";
 import { Check } from "lucide-react";
 import { SERVICES, WHATSAPP_URL } from "@/lib/site";
 
@@ -23,15 +23,8 @@ export function Services() {
               WhatsApp us
             </a>
           </div>
-          <figure className="parallax mt-10 hidden overflow-hidden rounded-2xl border border-line lg:block">
-            <Image
-              src="/images/computer-accessories.webp"
-              alt="Laptop, keyboard, mouse and headphones on a desk"
-              width={960}
-              height={600}
-              sizes="28rem"
-              className="h-auto w-full"
-            />
+          <figure className="mt-10 hidden overflow-hidden rounded-2xl border border-line lg:block">
+            <RepairArt />
           </figure>
         </div>
 

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { AboutArt } from "@/components/art/AboutArt";
 import { COMPANY } from "@/lib/site";
 
 export function About() {
@@ -27,15 +27,8 @@ export function About() {
             </p>
           </div>
         </div>
-        <figure className="parallax overflow-hidden rounded-2xl border border-line">
-          <Image
-            src="/images/network-patch-panel.webp"
-            alt="Network switch with patched Ethernet cables in a server rack"
-            width={960}
-            height={600}
-            sizes="(min-width: 1024px) 34rem, 100vw"
-            className="h-auto w-full"
-          />
+        <figure className="overflow-hidden rounded-2xl border border-line">
+          <AboutArt />
         </figure>
       </div>
     </section>
