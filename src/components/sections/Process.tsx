@@ -8,7 +8,7 @@ export function Process() {
         <h2 id="process-title" className="h2">
           From requirement to installation
         </h2>
-        <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <ol data-stagger className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s, i) => (
             <li key={s.title} className="border-t-2 border-brand pt-5">
               <p className="text-sm font-semibold text-brand">Step {i + 1}</p>

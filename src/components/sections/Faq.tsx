@@ -27,7 +27,7 @@ export function Faq() {
             <details key={f.q} className="faq group py-1">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-left text-lg font-medium text-ink transition-colors hover:text-brand [&::-webkit-details-marker]:hidden">
                 <h3 className="text-[1.05rem] font-medium">{f.q}</h3>
-                <ChevronDown className="h-5 w-5 shrink-0 text-ink-muted transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-open:rotate-180 group-open:text-brand" aria-hidden="true" />
+                <ChevronDown className="h-5 w-5 shrink-0 text-ink-muted transition-[transform,color] duration-ui group-open:rotate-180 group-open:text-brand" aria-hidden="true" />
               </summary>
               <p className="pb-5 pr-8 text-ink-muted">{f.a}</p>
             </details>

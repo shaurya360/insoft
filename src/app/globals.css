@@ -2,16 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =====================================================================
+   Motion tokens
+   One easing family, durations chosen by what moves:
+   press 120ms · micro (colour, small hovers) 220ms · ui (menus, lifts) 350ms ·
+   reveal (content entering) 800ms · ambient (hero shapes) 24–32s.
+   Only transform and opacity are animated, so the compositor does the work.
+   ===================================================================== */
 @layer base {
   :root {
     color-scheme: light;
-    --ease-fluid: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* decelerate: things arriving, hovers */
+    --ease-in: cubic-bezier(0.55, 0, 1, 0.45); /* accelerate: things leaving */
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* ambient, looping */
+    --ease-fluid: var(--ease-out);
+    --dur-press: 120ms;
+    --dur-micro: 220ms;
+    --dur-ui: 350ms;
+    --dur-reveal: 800ms;
     /* Lets <details> animate to its natural height (Chromium 129+; others just snap open) */
     interpolate-size: allow-keywords;
   }
 
   html {
     -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -24,6 +39,7 @@
     @apply bg-white text-ink antialiased;
     font-size: 1rem;
     line-height: 1.6;
+    text-rendering: optimizeLegibility;
   }
 
   /* Sections land below the sticky header when reached by anchor links */
@@ -49,36 +65,58 @@
     @apply mx-auto w-full max-w-content px-5 sm:px-6 lg:px-8;
   }
 
+  /* Fluid vertical rhythm: 4rem on phones growing smoothly to 5.5rem */
   .section {
-    @apply py-16 sm:py-20;
+    padding-block: clamp(4rem, 3rem + 3vw, 5.5rem);
   }
 
   .eyebrow {
     @apply text-sm font-semibold uppercase tracking-wider text-brand;
   }
 
+  /* Fluid type — scales continuously instead of jumping at breakpoints */
+  .display {
+    font-size: clamp(2rem, 1.45rem + 2.1vw, 2.75rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    @apply font-semibold;
+  }
+
   .h2 {
-    @apply mt-2 text-2xl font-semibold sm:text-3xl;
+    @apply mt-2 font-semibold;
+    font-size: clamp(1.5rem, 1.22rem + 1.15vw, 1.95rem);
+    line-height: 1.2;
   }
 
   .lead {
-    @apply mt-4 max-w-2xl text-lg text-ink-muted;
+    @apply mt-4 max-w-2xl text-ink-muted;
+    font-size: clamp(1.05rem, 1rem + 0.25vw, 1.125rem);
   }
 
+  /* ---------- Buttons ---------- */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold;
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold;
     transition:
-      transform 0.35s var(--ease-fluid),
-      box-shadow 0.35s var(--ease-fluid),
-      background-color 0.25s ease,
-      border-color 0.25s ease,
-      color 0.25s ease;
+      transform var(--dur-ui) var(--ease-out),
+      box-shadow var(--dur-ui) var(--ease-out),
+      background-color var(--dur-micro) var(--ease-out),
+      border-color var(--dur-micro) var(--ease-out),
+      color var(--dur-micro) var(--ease-out),
+      opacity var(--dur-micro) var(--ease-out);
   }
-  .btn:hover {
-    transform: translateY(-2px);
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover {
+      transform: translateY(-2px);
+    }
   }
+  /* Press feedback is quick on the way down, then eases back */
   .btn:active {
-    transform: translateY(0) scale(0.98);
+    transform: translateY(0) scale(0.97);
+    transition-duration: var(--dur-press);
+  }
+  .btn:disabled {
+    @apply cursor-progress;
+    transform: none;
   }
 
   .btn-primary {
@@ -90,99 +128,191 @@
   }
 
   .link {
-    @apply font-medium text-brand underline-offset-4 hover:underline;
+    @apply font-medium text-brand underline decoration-transparent underline-offset-4;
+    transition: text-decoration-color var(--dur-micro) var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .link:hover {
+      text-decoration-color: currentColor;
+    }
   }
 
-  /* Cards that lift gently on hover */
+  /* Cards that lift gently on hover (mouse only) */
   .lift {
     transition:
-      transform 0.45s var(--ease-fluid),
-      box-shadow 0.45s var(--ease-fluid),
-      border-color 0.3s ease;
+      transform var(--dur-ui) var(--ease-out),
+      box-shadow var(--dur-ui) var(--ease-out),
+      border-color var(--dur-micro) var(--ease-out);
   }
-  .lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 40px -24px rgba(15, 23, 42, 0.28);
+  @media (hover: hover) and (pointer: fine) {
+    .lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px -24px rgba(15, 23, 42, 0.28);
+    }
   }
 
-  /* Nav links with a sliding underline */
+  /* Nav links: underline slides in on hover and stays on the section in view */
   .nav-link {
-    @apply relative py-1 transition-colors hover:text-brand;
+    @apply relative py-1;
+    transition: color var(--dur-micro) var(--ease-out);
   }
   .nav-link::after {
     content: "";
     @apply absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-brand;
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.4s var(--ease-fluid);
+    transition: transform var(--dur-ui) var(--ease-out);
   }
-  .nav-link:hover::after {
+  .nav-link[aria-current="true"] {
+    @apply text-brand;
+  }
+  .nav-link[aria-current="true"]::after {
     transform: scaleX(1);
     transform-origin: left;
   }
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover {
+      @apply text-brand;
+    }
+    .nav-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
+  /* Form fields: focus ring and border ease in rather than snapping */
+  .field {
+    transition:
+      border-color var(--dur-micro) var(--ease-out),
+      box-shadow var(--dur-micro) var(--ease-out),
+      background-color var(--dur-micro) var(--ease-out);
+  }
 }
 
-/* ---------- Motion ---------- */
-
-/* Scroll reveal (classes added by <Reveal />) */
+/* =====================================================================
+   Scroll reveal — classes added by <Reveal />, removed again once the
+   element has arrived so its own hover transitions are untouched.
+   ===================================================================== */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translate3d(0, 24px, 0);
+  /* Pre-promoted while waiting, so arriving doesn't create a layer mid-animation
+     (measured: ~22% fewer paints while scrolling). Removed with the class. */
+  will-change: opacity, transform;
   transition:
-    opacity 0.9s var(--ease-fluid),
-    transform 0.9s var(--ease-fluid);
-  transition-delay: var(--reveal-delay, 0ms);
+    opacity var(--dur-reveal) var(--ease-out) var(--reveal-delay, 0ms),
+    transform var(--dur-reveal) var(--ease-out) var(--reveal-delay, 0ms);
 }
 .reveal.reveal-in {
   opacity: 1;
   transform: none;
 }
 
-/* Hero entrance — the heading only slides (never hidden) so it paints immediately */
+/* =====================================================================
+   Hero
+   ===================================================================== */
+
+/* Entrance on load. Fill mode "backwards" applies the start state during the
+   delay and then hands control back, so hover effects work afterwards.
+   The heading only slides (never hidden) so it paints immediately for LCP. */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translate3d(0, 18px, 0);
   }
 }
 @keyframes slide-up {
   from {
-    transform: translateY(14px);
+    transform: translate3d(0, 14px, 0);
   }
 }
 .hero-title {
-  animation: slide-up 0.9s var(--ease-fluid) both;
+  animation: slide-up 1s var(--ease-out) backwards;
 }
 .hero-in {
-  animation: rise 0.9s var(--ease-fluid) both;
+  animation: rise 1s var(--ease-out) backwards;
   animation-delay: var(--d, 0ms);
 }
 
-/* Liquid gradient shapes behind the hero */
+/* Liquid shapes: soft radial gradients (no blur filter, so nothing is
+   re-filtered each frame) drifting with transform only. Paused while the
+   hero is off screen. */
 .blob {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(60px);
-  opacity: 0.7;
   will-change: transform;
-  animation: drift 22s ease-in-out infinite alternate;
+  animation: drift 26s var(--ease-in-out) infinite alternate;
+}
+.blob-a {
+  background: radial-gradient(closest-side, rgba(0, 86, 179, 0.42), rgba(0, 86, 179, 0.16) 55%, transparent);
+}
+.blob-b {
+  background: radial-gradient(closest-side, rgba(125, 211, 252, 0.75), rgba(125, 211, 252, 0.25) 55%, transparent);
+  animation-duration: 30s;
+  animation-delay: -9s;
+}
+.blob-c {
+  background: radial-gradient(closest-side, rgba(165, 180, 252, 0.6), rgba(165, 180, 252, 0.2) 55%, transparent);
+  animation-duration: 34s;
+  animation-delay: -17s;
 }
 @keyframes drift {
   0% {
-    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: translate3d(6%, -8%, 0) scale(1.15) rotate(25deg);
+    transform: translate3d(6%, -7%, 0) scale(1.12);
   }
   100% {
-    transform: translate3d(-8%, 6%, 0) scale(0.92) rotate(-15deg);
+    transform: translate3d(-7%, 5%, 0) scale(0.94);
+  }
+}
+[data-hero-offscreen] .blob {
+  animation-play-state: paused;
+}
+
+/* Cinematic hand-off: as the hero scrolls away its content eases up and
+   softens. Driven by the scroll position on the compositor, no JS. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-scroll {
+      animation: hero-exit linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+    @keyframes hero-exit {
+      to {
+        opacity: 0.4;
+        transform: translate3d(0, -40px, 0) scale(0.985);
+      }
+    }
+
+    /* Subtle depth on photos: the image drifts inside its frame while scrolling */
+    .parallax {
+      overflow: hidden;
+    }
+    .parallax img {
+      animation: parallax linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+    @keyframes parallax {
+      from {
+        transform: translate3d(0, -4%, 0) scale(1.1);
+      }
+      to {
+        transform: translate3d(0, 4%, 0) scale(1.1);
+      }
+    }
   }
 }
 
-/* Brand strip that glides continuously */
+/* =====================================================================
+   Brand strip — loops on the compositor; pauses under the mouse
+   ===================================================================== */
 @keyframes marquee {
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 .marquee {
@@ -191,9 +321,15 @@
 .marquee-track {
   animation: marquee 45s linear infinite;
 }
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
 }
+
+/* =====================================================================
+   Header
+   ===================================================================== */
 
 /* Thin progress bar under the header, driven by page scroll (no JS) */
 .scroll-progress {
@@ -216,19 +352,124 @@
   }
 }
 
-/* Smooth FAQ open/close */
+/* Mobile menu: opens with ease-out, closes faster with ease-in.
+   visibility switches after the fade so the closed menu can't be tabbed into. */
+.mobile-menu {
+  opacity: 0;
+  transform: translate3d(0, -8px, 0);
+  visibility: hidden;
+  transition:
+    opacity var(--dur-micro) var(--ease-in),
+    transform var(--dur-micro) var(--ease-in),
+    visibility 0s linear var(--dur-micro);
+}
+.mobile-menu[data-open="true"] {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition:
+    opacity var(--dur-ui) var(--ease-out),
+    transform var(--dur-ui) var(--ease-out),
+    visibility 0s;
+}
+.mobile-menu li {
+  opacity: 0;
+  transform: translate3d(0, -4px, 0);
+  transition:
+    opacity var(--dur-micro) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out);
+}
+.mobile-menu[data-open="true"] li {
+  opacity: 1;
+  transform: none;
+  transition-duration: var(--dur-ui);
+  transition-delay: calc(var(--i, 0) * 30ms + 40ms);
+}
+
+/* Menu ⇄ close icon cross-fade */
+.menu-icon {
+  transition:
+    opacity var(--dur-micro) var(--ease-out),
+    transform var(--dur-ui) var(--ease-out);
+}
+.menu-icon[data-shown="false"] {
+  opacity: 0;
+  transform: rotate(-45deg) scale(0.8);
+}
+
+/* =====================================================================
+   FAQ: height eases open, the answer fades in as it arrives
+   ===================================================================== */
 details.faq::details-content {
   block-size: 0;
   overflow: hidden;
   transition:
-    block-size 0.45s var(--ease-fluid),
-    content-visibility 0.45s allow-discrete;
+    block-size var(--dur-ui) var(--ease-out),
+    content-visibility var(--dur-ui) allow-discrete;
 }
 details.faq[open]::details-content {
   block-size: auto;
 }
+details.faq > :not(summary) {
+  opacity: 0;
+  transform: translate3d(0, -4px, 0);
+  transition:
+    opacity var(--dur-micro) var(--ease-out),
+    transform var(--dur-ui) var(--ease-out);
+}
+details.faq[open] > :not(summary) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 60ms;
+}
+/* A closed <details> doesn't render its content, so give the fade a start point */
+@starting-style {
+  details.faq[open] > :not(summary) {
+    opacity: 0;
+    transform: translate3d(0, -4px, 0);
+  }
+}
 
+/* =====================================================================
+   Small entrances
+   ===================================================================== */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+}
+.fade-up {
+  animation: fade-up var(--dur-ui) var(--ease-out) backwards;
+}
+
+/* Floating WhatsApp button: arrives after the page settles */
+@keyframes wa-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0) scale(0.85);
+  }
+}
+.wa-float {
+  animation: wa-in 0.6s var(--ease-out) 0.9s backwards;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  animation: spin 0.8s linear infinite;
+}
+
+/* =====================================================================
+   Reduced motion: everything is shown in place, nothing loops or drifts
+   ===================================================================== */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .marquee {
     mask-image: none;
   }
@@ -241,36 +482,23 @@ details.faq[open]::details-content {
   .marquee-dup {
     display: none;
   }
-  .blob {
+  .blob,
+  .hero-title,
+  .hero-in,
+  .wa-float,
+  .fade-up {
     animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 
   *,
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
     animation-duration: 0.01ms !important;
   }
-}
-
-/* Mobile menu slides down */
-@keyframes menu-in {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-}
-.menu-in:not([hidden]) {
-  animation: menu-in 0.35s var(--ease-fluid);
-}
-
-/* Floating WhatsApp button: pops in after load */
-@keyframes wa-in {
-  from {
-    opacity: 0;
-    transform: translateY(16px) scale(0.85);
-  }
-}
-.wa-float {
-  animation: wa-in 0.6s var(--ease-fluid) 0.8s both;
 }

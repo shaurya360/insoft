@@ -15,9 +15,9 @@ export function Solutions() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
+        <div data-stagger className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
           {SOLUTIONS.map((s) => (
-            <article key={s.title} className="bg-white p-6 transition-colors duration-500 hover:bg-brand-light/60 sm:p-7">
+            <article key={s.title} className="bg-white p-6 transition-colors duration-ui hover:bg-brand-light/60 sm:p-7">
               <h3 className="text-lg font-semibold">{s.title}</h3>
               <p className="mt-2 text-ink-muted">{s.text}</p>
             </article>

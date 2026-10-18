@@ -7,7 +7,7 @@ export function BulkOrders() {
       <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
         <div>
           <p className="text-sm font-semibold uppercase tracking-wider text-white/80">Our specialisation</p>
-          <h2 id="bulk-title" className="mt-3 text-[1.75rem] font-semibold leading-tight text-white sm:text-[2.1rem]">
+          <h2 id="bulk-title" className="mt-3 text-[clamp(1.6rem,1.25rem+1.5vw,2.15rem)] font-semibold leading-tight text-white">
             We specialise in bulk and corporate orders — from a batch of laptops to a complete office
           </h2>
           <p className="mt-4 text-lg text-white/85">
@@ -33,9 +33,9 @@ export function BulkOrders() {
             </a>
           </div>
         </div>
-        <ul className="grid gap-px self-start overflow-hidden rounded-2xl bg-white/20 sm:grid-cols-2">
+        <ul data-stagger className="grid gap-px self-start overflow-hidden rounded-2xl bg-white/20 sm:grid-cols-2">
           {BULK.points.map((p) => (
-            <li key={p.title} className="bg-brand p-5 transition-colors duration-500 hover:bg-brand-dark sm:p-6">
+            <li key={p.title} className="bg-brand p-5 transition-colors duration-ui hover:bg-brand-dark sm:p-6">
               <h3 className="text-lg font-semibold text-white">{p.title}</h3>
               <p className="mt-1.5 text-white/85">{p.text}</p>
             </li>

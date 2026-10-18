@@ -5,23 +5,23 @@ export function Hero() {
   return (
     <section id="top" aria-labelledby="hero-title" className="relative isolate overflow-hidden border-b border-line bg-paper">
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <span className="blob -left-24 -top-32 h-[30rem] w-[30rem] bg-brand/45" />
-        <span className="blob right-[-8rem] top-10 h-[26rem] w-[26rem] bg-sky-300/70 [animation-delay:-7s] [animation-duration:26s]" />
-        <span className="blob bottom-[-10rem] left-1/3 h-[22rem] w-[32rem] bg-indigo-300/60 [animation-delay:-14s] [animation-duration:30s]" />
+        <span className="blob blob-a -left-28 -top-36 h-[34rem] w-[34rem]" />
+        <span className="blob blob-b right-[-10rem] top-4 h-[30rem] w-[30rem]" />
+        <span className="blob blob-c bottom-[-12rem] left-1/3 h-[26rem] w-[36rem]" />
       </div>
-      <div className="container-page grid gap-12 py-14 sm:py-20 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:gap-16">
+      <div className="hero-scroll container-page grid gap-12 py-14 sm:py-20 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:gap-16">
         <div>
           <p className="eyebrow hero-in">Nehru Place, New Delhi</p>
-          <h1 id="hero-title" className="hero-title mt-3 text-[2rem] font-semibold leading-[1.15] sm:text-[2.6rem]">
+          <h1 id="hero-title" className="hero-title display mt-3">
             Complete IT solutions provider for enterprises and companies in Delhi
           </h1>
-          <p className="hero-in mt-5 max-w-2xl text-lg text-ink-muted [--d:120ms]">
+          <p className="hero-in mt-5 max-w-2xl text-lg text-ink-muted [--d:90ms]">
             Insoft Technology is a complete IT solutions provider for enterprises and companies — servers, workstations,
             new, refurbished and gaming laptops, desktops, networking, firewalls, racks, UPS, CCTV and printers from Dell,
             HP, Lenovo, Apple and other leading brands. We specialise in bulk orders and are just as happy to supply a
             single unit, with in-house repairs and delivery across India.
           </p>
-          <div className="hero-in mt-8 flex flex-col gap-3 [--d:220ms] sm:flex-row">
+          <div className="hero-in mt-8 flex flex-col gap-3 [--d:170ms] sm:flex-row">
             <a href="#contact" className="btn-primary">
               Request a quotation
             </a>
@@ -31,7 +31,7 @@ export function Hero() {
             </a>
           </div>
 
-          <dl className="hero-in mt-10 grid [--d:320ms] max-w-xl grid-cols-3 divide-x divide-line border-y border-line">
+          <dl className="hero-in mt-10 grid [--d:250ms] max-w-xl grid-cols-3 divide-x divide-line border-y border-line">
             {FIGURES.map((f) => (
               <div key={f.label} className="flex flex-col px-3 py-4 first:pl-0 sm:px-5">
                 <dt className="text-sm text-ink-muted">{f.label}</dt>
@@ -41,7 +41,7 @@ export function Hero() {
           </dl>
         </div>
 
-        <aside aria-labelledby="visit-title" className="hero-in lift rounded-3xl border border-white/70 bg-white/75 shadow-[0_20px_50px_-30px_rgba(0,86,179,0.45)] backdrop-blur-xl [--d:260ms] p-6 sm:p-7">
+        <aside aria-labelledby="visit-title" className="hero-in lift rounded-3xl border border-white bg-white/90 shadow-[0_20px_50px_-30px_rgba(0,86,179,0.45)] [--d:220ms] p-6 sm:p-7">
           <h2 id="visit-title" className="text-lg font-semibold">
             Visit or contact our office
           </h2>

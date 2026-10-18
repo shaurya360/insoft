@@ -26,7 +26,7 @@ export function Clients() {
           </p>
         </div>
 
-        <ul className="mt-10 grid grid-cols-2 overflow-hidden rounded-2xl border-l border-t border-line bg-white sm:grid-cols-3 lg:grid-cols-5">
+        <ul data-stagger className="mt-10 grid grid-cols-2 overflow-hidden rounded-2xl border-l border-t border-line bg-white sm:grid-cols-3 lg:grid-cols-5">
           {CLIENTS.map((c) => (
             <li key={c.name} className="group flex h-28 items-center justify-center border-b border-r border-line px-5 sm:h-32">
               <Image
@@ -36,7 +36,7 @@ export function Clients() {
                 height={c.height}
                 sizes="(min-width: 1024px) 200px, 45vw"
                 style={{ height: logoHeight(c) }}
-                className="w-auto max-w-full object-contain transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                className="w-auto max-w-full object-contain transition-transform duration-ui group-hover:scale-105"
               />
             </li>
           ))}

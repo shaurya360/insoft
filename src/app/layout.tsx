@@ -122,6 +122,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        {/* Marker the header watches to know when the page has scrolled */}
+        <div id="page-top" aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-2 w-px" />
         <Header />
         <main id="main">{children}</main>
         <Footer />

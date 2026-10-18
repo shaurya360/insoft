@@ -15,7 +15,7 @@ export function Products() {
           </p>
         </div>
 
-        <div className="mt-12 divide-y divide-line border-y border-line">
+        <div data-stagger className="mt-12 divide-y divide-line border-y border-line">
           {PRODUCT_GROUPS.map((group) => (
             <article key={group.id} id={group.id} aria-labelledby={`${group.id}-title`} className="grid gap-6 py-9 md:grid-cols-[17rem_1fr] md:gap-10">
               <div>
@@ -31,7 +31,7 @@ export function Products() {
               </div>
               <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
                 {group.items.map((item) => (
-                  <li key={item.name} className="border-l-2 border-brand-line pl-4 transition-colors duration-500 hover:border-brand">
+                  <li key={item.name} className="border-l-2 border-brand-line pl-4 transition-colors duration-ui hover:border-brand">
                     <h4 className="font-semibold text-ink">{item.name}</h4>
                     <p className="mt-1 text-[0.95rem] text-ink-muted">{item.detail}</p>
                   </li>

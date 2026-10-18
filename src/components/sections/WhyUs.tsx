@@ -10,7 +10,7 @@ export function WhyUs() {
             Why companies keep buying from us
           </h2>
         </div>
-        <ol className="mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
+        <ol data-stagger className="mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {REASONS.map((r, i) => (
             <li key={r.title} className="grid grid-cols-[2.5rem_1fr] gap-x-2">
               <span className="text-lg font-semibold tabular-nums text-brand" aria-hidden="true">

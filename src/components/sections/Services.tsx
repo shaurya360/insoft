@@ -23,7 +23,7 @@ export function Services() {
               WhatsApp us
             </a>
           </div>
-          <figure className="mt-10 hidden overflow-hidden rounded-2xl border border-line lg:block">
+          <figure className="parallax mt-10 hidden overflow-hidden rounded-2xl border border-line lg:block">
             <Image
               src="/images/computer-accessories.webp"
               alt="Laptop, keyboard, mouse and headphones on a desk"
@@ -35,7 +35,7 @@ export function Services() {
           </figure>
         </div>
 
-        <ul className="divide-y divide-line self-start rounded-2xl border border-line bg-white">
+        <ul data-stagger className="divide-y divide-line self-start rounded-2xl border border-line bg-white">
           {SERVICES.map((s) => (
             <li key={s.name} className="flex gap-4 p-5 sm:p-6">
               <Check className="mt-1 h-5 w-5 shrink-0 text-brand" aria-hidden="true" />
