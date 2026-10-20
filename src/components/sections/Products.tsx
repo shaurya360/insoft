@@ -1,16 +1,16 @@
 import {
+  AppWindow,
   BatteryCharging,
-  Cable,
   Cctv,
   Gamepad2,
   HardDrive,
+  Keyboard,
   Laptop,
   Network,
   Presentation,
   Printer,
   Recycle,
   Server,
-  ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
 import { PRODUCT_GROUPS } from "@/lib/site";
@@ -22,13 +22,13 @@ const ICONS: Record<string, LucideIcon> = {
   refurbished: Recycle,
   gaming: Gamepad2,
   networking: Network,
-  security: ShieldCheck,
-  "racks-cabling": Cable,
-  power: BatteryCharging,
+  "racks-power": BatteryCharging,
   storage: HardDrive,
   surveillance: Cctv,
   printing: Printer,
   displays: Presentation,
+  peripherals: Keyboard,
+  software: AppWindow,
 };
 
 const PREVIEW = 3; // product names shown on the closed card
@@ -58,26 +58,29 @@ export function Products() {
                 key={group.id}
                 id={group.id}
                 aria-labelledby={`${group.id}-title`}
-                className="lift flex flex-col rounded-2xl border border-line bg-white p-4 hover:border-brand/30 sm:p-6"
+                className="lift flex flex-col rounded-2xl sm:row-span-4 sm:grid sm:grid-rows-subgrid sm:gap-y-0 border border-line bg-white p-4 hover:border-brand/30 sm:p-6"
               >
-                <div className="flex items-start gap-4">
+                {/* From sm up each card is a 4-row subgrid (header, summary, chips, footer), so those parts
+                    line up across every card in a row. */}
+                <div className="flex items-center gap-4">
                   <span
                     className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-light text-brand"
                     aria-hidden="true"
                   >
                     <Icon className="h-5 w-5" />
                   </span>
-                  <div>
-                    <h3 id={`${group.id}-title`} className="text-lg font-semibold leading-snug">
-                      {group.title}
-                    </h3>
-                    <p className="mt-1 line-clamp-2 text-[0.9rem] text-ink-muted sm:line-clamp-none sm:text-[0.95rem]">
-                      {group.summary}
-                    </p>
-                  </div>
+                  <h3
+                    id={`${group.id}-title`}
+                    className="flex items-center text-lg font-semibold leading-snug"
+                  >
+                    {group.title}
+                  </h3>
                 </div>
+                <p className="mt-3 line-clamp-2 text-[0.9rem] text-ink-muted sm:line-clamp-none sm:text-[0.95rem]">
+                  {group.summary}
+                </p>
 
-                <ul className="mt-4 hidden flex-wrap gap-1.5 sm:flex" aria-label={`${group.title}: highlights`}>
+                <ul className="mt-4 hidden flex-wrap content-start items-start gap-1.5 sm:flex" aria-label={`${group.title}: highlights`}>
                   {group.items.slice(0, PREVIEW).map((item) => (
                     <li
                       key={item.name}

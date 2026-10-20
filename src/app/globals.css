@@ -559,6 +559,40 @@ dialog.sheet[open]::backdrop {
   animation: diag-done 5s var(--ease-out) infinite backwards;
 }
 
+/* Delivery tracker (Why us): one 6s cycle — the line fills and the truck drives from the
+   first step to the last at a steady pace, each step is ticked as it is reached, then all reset. */
+@keyframes trk-fill {
+  0%, 5% { transform: scaleX(0); opacity: 1; }
+  75%, 92% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+@keyframes trk-truck {
+  0%, 5% { transform: translateX(0); opacity: 1; }
+  75%, 92% { transform: translateX(270px); opacity: 1; }
+  100% { transform: translateX(270px); opacity: 0; }
+}
+@keyframes trk-step-0 { 0%, 4% { opacity: 0; transform: scale(0.4); } 8%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes trk-step-1 { 0%, 27% { opacity: 0; transform: scale(0.4); } 31%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes trk-step-2 { 0%, 51% { opacity: 0; transform: scale(0.4); } 55%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes trk-step-3 { 0%, 74% { opacity: 0; transform: scale(0.4); } 78%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.trk-fill {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: trk-fill 6s linear infinite;
+}
+.trk-truck {
+  animation: trk-truck 6s linear infinite;
+}
+.trk-step {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: 6s var(--ease-out) infinite;
+}
+.trk-step-0 { animation-name: trk-step-0; }
+.trk-step-1 { animation-name: trk-step-1; }
+.trk-step-2 { animation-name: trk-step-2; }
+.trk-step-3 { animation-name: trk-step-3; }
+
 /* Enquiry message briefly highlighted after the quote builder fills it */
 @keyframes prefilled {
   0% { box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.35); border-color: #0056b3; }
@@ -623,6 +657,9 @@ dialog.sheet[open]::backdrop {
   .led,
   .diag-bar,
   .diag-check,
+  .trk-fill,
+  .trk-truck,
+  .trk-step,
   .blob,
   .hero-slide,
   .hero-title,
@@ -634,6 +671,10 @@ dialog.sheet[open]::backdrop {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+  /* Delivery tracker shown completed: truck at the last step */
+  .trk-truck {
+    transform: translateX(270px);
   }
 
   *,
